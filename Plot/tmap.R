@@ -1,0 +1,10 @@
+install.packages("tmap")
+library(tmap)
+data("World")
+tm_shape(World) +tm_polygons("HPI")
+tm_shape(World) +tm_polygons("life_exp")
+tmap_mode("view")
+tm_shape(World) +tm_polygons("life_exp")
+tm_shape(World) +tm_polygons(c("HPI","life_exp"))
+tm_shape(World) +tm_polygons(c("HPI","life_exp"))+tm_facets(sync = TRUE, ncol = 2)
+  
