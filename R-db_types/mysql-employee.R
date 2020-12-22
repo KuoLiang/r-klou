@@ -10,7 +10,7 @@ print(mydataframe)
 
 result = dbSendQuery(mysqlconnection, "select UnitPrice,Quantity +
                      from `order details`") 
-mydataframe = fetch(result,n=-1) 
+mydataframe = fetch(result,n=-1) # n= -1 or n=Inf means infinite
 mydataframe
 summary(mydataframe)
 

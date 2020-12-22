@@ -2,13 +2,13 @@ install.packages('RMySQL')
 library(RMySQL)
 
 connect = dbConnect(RMySQL::MySQL(), dbname = "northwind",username = "student", 
-                    password = "1kRw5HRkM1O64HYj",host = "10.8.0.1")
+                    password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1")
 dbListTables(connect)
 NW = dbGetQuery(connect ,"select * from orders")
 NW
 
 connect2 = dbConnect(RMySQL::MySQL(), dbname = "covid19",username = "student", 
-                    password = "1kRw5HRkM1O64HYj",host = "10.8.0.1")
+                    password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1")
 dbListTables(connect2)
 CT = dbGetQuery(connect2 ,"select count(*) from cases_tw")
 CT
