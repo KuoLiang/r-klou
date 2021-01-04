@@ -1,5 +1,5 @@
 library(datasets)
-install.packages("RKEEL")
+#install.packages("RKEEL")
 library(RKEEL)
 set.seed(2020)
 train.index = sample(x=1:nrow(iris), size=ceiling(0.8*nrow(iris) )) #抽樣8/2
@@ -12,6 +12,7 @@ test_set = iris[-train.index,]
 algorithm <- Ripper_C(train_set, test_set)
 #Run algorithm
 algorithm$run()
+algorithm$output
 #See results
 algorithm$testPredictions
 #############
@@ -19,7 +20,7 @@ algorithm2 <- Ripper_C(train_set, test_set,0.5,3)
 algorithm2$run()
 algorithm2$testPredictions
 ############
-install.packages("RWeka")
+#install.packages("RWeka")
 library(RWeka)
 ripper_result <- JRip(Species ~ ., data = train_set)
 ripper_result
