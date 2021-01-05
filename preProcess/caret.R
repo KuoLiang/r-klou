@@ -30,11 +30,15 @@ nrow(train_set)
 table(train_set$Species)
 
 ###############
+#c50
+###############
 model_c50 = train(Species ~ ., data=train_set, method='C5.0')
 model_c50
 plot(model_c50)
 predicted_c50 <- predict(model_c50, test_set, type="raw")
 predicted_c50
+###############
+#knn
 ###############
 model_knn = train(Species ~ ., data=train_set, method='knn')
 model_knn
@@ -42,5 +46,14 @@ plot(model_knn)
 predicted_knn <- predict(model_knn, test_set, type="raw")
 predicted_knn
 ###############
-comp=cbind(predicted_c50,predicted_knn)
+#svm
+###############
+model_svm = train(Species ~ ., data=train_set, method='svmPoly')
+model_svm
+plot(model_svm)
+predicted_svm <- predict(model_svm, test_set, type="raw")
+predicted_svm
+###############
+
+comp=cbind(predicted_c50,predicted_knn,predicted_svm)
 comp
