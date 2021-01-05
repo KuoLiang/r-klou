@@ -29,7 +29,8 @@ result
 table(result)
 
 ##########
-ctrl <- trainControl(method="repeatedcv",repeats = 10) #repeated k-fold cross-validation 
+install.packages("caret")
+ctrl <- caret::trainControl(method="repeatedcv",repeats = 10) #repeated k-fold cross-validation 
 knnFit <- caret::train(Species ~ . ,data = iris, method = "knn", 
                        trControl = ctrl, 
                        preProcess = c("center","scale"),  #replace missing value by mean and sd
