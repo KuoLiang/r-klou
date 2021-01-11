@@ -16,14 +16,14 @@ ann_formula = setosa + versicolor + virginica ~ Sepal.Length + Sepal.Width + Pet
 #ANN
 #############################################
 
-model_neu= neuralnet(formula = ann_formula, data=iris_train)
+model_neu= neuralnet(formula = ann_formula, data=iris_train) #use the training data
 plot(model_neu)
-model_neu$result.matrix
-result_pre=predict(model_neu, iris_test)
-result_pre
+model_neu$result.matrix  #show out the nn information
+result_pre=predict(model_neu, iris_test) #predict the test data
+result_pre #prediction result
 
 
-model_neu2= neuralnet(formula = ann_formula, data=iris_train, hidden=2)
+model_neu2= neuralnet(formula = ann_formula, data=iris_train, hidden=2) #node of hidden layer = 2
 plot(model_neu2)
 model_neu2$result.matrix
 result_pre2=predict(model_neu2, iris_test)
@@ -38,7 +38,7 @@ for(i in 1:nrow(pred.df)){
   if(pred.df[i, 2]==1){ pred.df[i, "Species"] = "Versicolor"}
   if(pred.df[i, 3]==1){ pred.df[i, "Species"] = "Virginica"}
 }
-pred.df
+pred.df # you may find out some empty results
 #######################
 #tunning the best parameter
 #######################
@@ -51,7 +51,21 @@ best_model = caret::train(form=ann_formula, data=iris_train, method="neuralnet",
 )
 best_model
 plot(best_model)
-model_neu_final= neuralnet(formula = ann_formula, data=iris_train, hidden=c(1,4))
+model_neu_final= neuralnet(formula = ann_formula, data=iris_train, hidden=c(1,2))
 plot(model_neu_final)
+model_neu_final$result.matrix
+result_final=predict(model_neu_final, iris_test)
+result_final
+#
+result_final=round(result_final)
+pred.df = as.data.frame(result_final)
+pred.df$Species =""
+pred.df
+for(i in 1:nrow(pred.df)){
+    if(pred.df[i, 1]==1){ pred.df[i, "Species"] = "Setosa"}
+    if(pred.df[i, 2]==1){ pred.df[i, "Species"] = "Versicolor"}
+    if(pred.df[i, 3]==1){ pred.df[i, "Species"] = "Virginica"}
+}
+pred.df #much better
 #########
 
