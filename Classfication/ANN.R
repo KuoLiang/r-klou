@@ -1,7 +1,10 @@
-#install.packages("neuralnet")
+install.packages("neuralnet")
+install.packages("class")
+install.packages("nnet")
+library(nnet)
 library(neuralnet)
 library(caret) 
-library(nnet)
+library(class)
 iris_dummy = cbind(iris, class.ind(iris$Species)) #dummy variables
 iris_dummy
 set.seed(2020)
