@@ -15,3 +15,12 @@ predicted <- predict(model1, newcases, type="class")
 predicted
 predicted <- predict(model2, newcases, type="prob")
 predicted
+
+###
+
+ctrl <- caret::trainControl(method="repeatedcv",repeats = 10) #repeated k-fold cross-validation 
+C50Fit <- caret::train(Species ~ . ,data = iris, method = "C5.0", 
+                       trControl = ctrl, 
+                       preProcess = c("center","scale"),  #replace missing value by mean and sd
+                       tuneLength = 20)
+C50Fit
