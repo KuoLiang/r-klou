@@ -4,7 +4,7 @@ library("stringr")
 library("ggplot2")
 
 # Define image source
-img.url = 'https://assets.donaldjtrump.com/site/about_body_img_2.jpg'
+img.url = 'http://ilst.site.nthu.edu.tw/var/file/276/1276/pictures/930/m/mczh-tw250x250_small111732_366078584785.jpg'
 
 # Define Microsoft API URL to request data
 URL.emoface = 'https://southcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_01&faceIdTimeToLive=86400'
@@ -26,11 +26,11 @@ faceEMO = POST(
 faceEMO
 
 # Reuqest results from face analysis
-Obama = httr::content(faceEMO)[[1]]
-Obama
+pic1 = httr::content(faceEMO)[[1]]
+pic1
 # Define results in data frame
-o<-as.data.frame(as.matrix(Obama$faceAttributes))
-o
+result<-as.data.frame(as.matrix(pic1$faceAttributes))
+result
 # Make some transformation
 
 
