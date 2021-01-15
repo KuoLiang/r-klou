@@ -5,7 +5,7 @@ faces <- ocv_face(unconf)
 ocv_write(faces, 'faces.jpg') #write a circle to working directory
 facemask <- ocv_facemask(unconf)
 attr(facemask, 'faces')
-### live camera
+### live camera 2
 ocv_video(ocv_face)
 ocv_video(ocv_edges)
 ###
