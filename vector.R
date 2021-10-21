@@ -18,3 +18,12 @@ d = a+c
 d
 d = a/c
 d = a/e
+#####
+c[1]
+c[c(1,3)]
+a<3
+a<c
+any(a<c)
+any(a<=c)
+all(a>c)
+all(a>=c)
