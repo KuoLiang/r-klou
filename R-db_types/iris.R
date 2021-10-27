@@ -52,8 +52,12 @@ hist(irisVir$Petal.Length,breaks=seq(0,8,l=17),xlim=c(0,8),ylim=c(0,40))
 library(beanplot)
 xiris <- iris
 xiris$Species <- NULL
-beanplot(xiris, main = "Iris flowers",col=c('#ff8080','#0000FF','#0000FF','#FF00FF'), border = "#000000")
-
+beanplot(xiris, main = "Iris flowers",side ="both",
+         col=c('#ff8080','#0000FF','#0000FF','#FF00FF'), 
+         border = "#000000")
+beanplot(xiris, main = "Iris flowers",
+         col=c('#ff8080','#0000FF','#0000FF','#FF00FF'), 
+         border = "#000000")
 
 ## ----iris_corr1----------------------------------------------------------
 corr <- cor(iris[,1:4])
