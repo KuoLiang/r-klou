@@ -20,8 +20,8 @@ mycolor = c(rgb(0,0,(884:0)/885))
 colorlist = mycolor 
 mydemoFreqC = cbind(demoFreqC, colorlist)
 wordcloud2(mydemoFreqC, size = 2, 
-           color = mydemoFreqC$colorlist, 
-           backgroundColor = "white",)
+           color = mycolor, 
+           backgroundColor = "white")
 
 demoFreq
 demoFreqC
