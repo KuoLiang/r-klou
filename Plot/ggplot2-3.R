@@ -27,8 +27,9 @@ ggplot(data = mtcars,
 
 # Adding color and shape
 ggplot(data = mtcars,
-       aes(x = hp, y = mpg, col = factor(cyl),
-           shape = factor(am))) + geom_point()
+       aes(x = hp, y = mpg, col = factor(cyl),shape = factor(am))
+       ) + 
+      geom_point()
 
 # Histogram plot
 ggplot(data = mtcars, aes(x = hp)) +
