@@ -21,14 +21,20 @@ wordcloud2(mydemoFreqC, size = 2, fontFamily = "標楷體",
            )
 
 mycolor = rep_len( c("red","green","blue"), nrow(demoFreq))
+#
+mycolor = rgb(seq(from=0,to=255,length.out=1000),0,0)
+#
+mycolor = rainbow(1011)
+#
+mycolor = colorRampPalette(c("red", "green")) 
+mycolor(1011) 
 
-colorlist = mycolor 
+colorlist = mycolor(1011)
+mydemoFreq = cbind(demoFreq, colorlist)
 
-mydemoFreqC = cbind(demoFreqC, colorlist)
-
-wordcloud2(demoFreqC, size = 1, 
+wordcloud2(demoFreq, size = 1, 
            #color = c("#FF0000" ,"#00FF00" ,"#0000FF") ,
-           #color = mydemoFreqC$colorlist,
+           color = mydemoFreq[,3],
            shape = 'diamond', #circle’ (default), ‘cardioid’ (apple or heart shape curve, the most known polar equation), ‘diamond’ (alias of square), ‘triangle-forward’, ‘triangle’, ‘pentagon’, and ‘star’. 
            #figPath = "~/Desktop/t.png", #English only
            backgroundColor = "white")
