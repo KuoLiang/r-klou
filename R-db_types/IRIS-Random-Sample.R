@@ -7,7 +7,7 @@ iris_leves=levels(iris$Species) #factor
 class(iris)
 class(iris$Species)
 class(iris_leves)
-getwd()
+getwd()   #目前工作目錄
 setwd()
 str(iris) # structure of 
 #########取亂數,設定種子數讓每次都亂得一致

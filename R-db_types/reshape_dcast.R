@@ -2,7 +2,8 @@
 install.packages("RMySQL")
 library("RMySQL")
 library("reshape2")
-mysqlconnection = dbConnect(MySQL(), user = 'student', password = 's?P%3p7DeGw5H#HM', dbname = 'northwind' ,host = '10.8.0.1')
+mysqlconnection = dbConnect(MySQL(), user = 'student', password = '35162', 
+                            dbname = 'northwind' ,host = '10.8.0.1')
 dbListTables(mysqlconnection)
 ################
 quantity = dbSendQuery(mysqlconnection, 
