@@ -26,7 +26,13 @@ jsdf3 = fromJSON("~/Desktop/c.json", flatten=TRUE)
 a=jsdf3             #回傳結果為dataframe
 b=jsdf3[7]          #回傳結果為dataframe
 c=jsdf3[[7]]        #取第七欄位，回傳結果為list
-c[[2]]
-d=jsdf3[[7]][[1]]   #取第七欄第一個值,回傳結果為dataframe
+c
+head(c)
+c[[1]]                    #取第七欄第一個值,回傳結果為dataframe
+c[[1]]$elementValue.value #取第七欄第一個值,再利用dataframe取第二欄，回傳結果為vector
+c[[1]][1,2]               #取第七欄第一個值,再利用dataframe取第一列第二欄，回傳結果為value
+c[[1]]$elementValue.value[1] #取第七欄第一個值,再利用dataframe取第一列第二欄，回傳結果為value
+
+d=jsdf3[[7]][[1]]       #取第七欄第一個值,回傳結果為dataframe
 e=jsdf3[[7]][[1]][1,2]  #取第七欄第一個值,再利用dataframe取第一列第二欄，回傳結果為value
-f=jsdf3[[7]][[1]][1,2]  #取第七欄第一個值,再利用dataframe取第一列第二欄，回傳結果為value
+e
