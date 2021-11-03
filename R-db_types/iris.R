@@ -1,14 +1,15 @@
 ## ----iris_readdata-------------------------------------------------------
 library(datasets)
-str(iris)
+str(iris)  #structure of 
 
 
 ## ----iris_showdata-------------------------------------------------------
 # Get first 5 rows of each subset
-subset(iris, Species == "setosa")[1:5,]
-subset(iris, Species == "versicolor")[1:5,]
+subset(iris, Species == "setosa")[1:5,]       #subset() returns a data frame
+subset(iris, Species == "versicolor")[1:5,]   #then applying dataframe[a,b] format
 subset(iris, Species == "virginica")[1:5,]
 
+subset(iris, Sepal.Length*Sepal.Width < 15)   #the area < 15 cm2
 
 ## ----iris_showdata2------------------------------------------------------
 # Get column "Species" for all lines where Petal.Length < 2
@@ -31,7 +32,7 @@ boxplot(iris,las=0) # las 0,1,2,3 水平或直顯
 irisVer <- subset(iris, Species == "versicolor")
 irisSet <- subset(iris, Species == "setosa")
 irisVir <- subset(iris, Species == "virginica")
-par(mfrow=c(1,3),mar=c(6,3,2,1))   #frow 行列並排
+par(mfrow=c(1,3),mar=c(6,3,2,1))   #mfrow 行列並排
 boxplot(irisVer[,1:4], main="Versicolor",ylim = c(0,6),las=2)
 boxplot(irisSet[,1:4], main="Setosa",ylim = c(0,8),las=2)
 boxplot(irisVir[,1:4], main="Virginica",ylim = c(0,8),las=2)
