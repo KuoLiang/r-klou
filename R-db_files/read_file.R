@@ -36,3 +36,17 @@ c[[1]]$elementValue.value[1] #取第七欄第一個值,再利用dataframe取第�
 d=jsdf3[[7]][[1]]       #取第七欄第一個值,回傳結果為dataframe
 e=jsdf3[[7]][[1]][1,2]  #取第七欄第一個值,再利用dataframe取第一列第二欄，回傳結果為value
 e
+temp=jsdf3[[7]][[1]][4,2]  #取一個溫度
+for(i in 1:10) {
+  temp[i]=jsdf3[[7]][[i]][4,2]  #取十個溫度
+}
+temp
+for(i in 1:length(jsdf3$lat)) {
+  temp[i]=jsdf3[[7]][[i]][4,2]  #取所有溫度
+}
+temp
+#################
+library(Matrix)
+library(plyr)
+f=ldply(c)
+f
