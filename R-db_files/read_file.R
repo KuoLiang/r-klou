@@ -63,7 +63,8 @@ for(i in 1:length(jsdf3$lat)) {      #429個節點
 }
 
 #################雙迴圈一次讀六個
-result3=data.frame(temp,temp,temp,temp,temp,temp)
+result3=matrix(NA, nrow = length(jsdf3$lat), ncol = 6)
+result3=as.data.frame(result3)
 for(i in 1:length(jsdf3$lat)) {
   for(j in 1:6){
   result3[i,j]=jsdf3[[7]][[i]][j,2]  #
