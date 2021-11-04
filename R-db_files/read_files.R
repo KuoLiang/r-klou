@@ -50,12 +50,12 @@ for(i in 1:length(jsdf3$lat)) {
   temp[i]=jsdf3[[7]][[i]][4,2]  #取所有溫度
 }
 
-humd=jsdf3[[7]][[1]][5,2]  #取一個溫度
+humd=jsdf3[[7]][[1]][5,2]  #取一個濕度
 for(i in 1:length(jsdf3$lat)) {
-  humd[i]=jsdf3[[7]][[i]][5,2]  #取所有溫度
+  humd[i]=jsdf3[[7]][[i]][5,2]  #取所有濕度
 }
 
-result = cbind(temp,humd)
+result = cbind(temp,humd) #合併
 #################
 library(Matrix)
 library(plyr)
