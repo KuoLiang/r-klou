@@ -67,11 +67,13 @@ result3=matrix(NA, nrow = length(jsdf3$lat), ncol = 6)
 result3=as.data.frame(result3)
 for(i in 1:length(jsdf3$lat)) {
   for(j in 1:6){
-  result3[i,j]=jsdf3[[7]][[i]][j,2]  #
+  result3[i,j]=as.numeric(jsdf3[[7]][[i]][j,2])  #強迫為數值
   }
 }
 V7 = result3$V6
 result3= cbind(result3,V7)
+
+filter(result3, V7 >= 1000)
 #####
 library(Matrix)
 library(plyr)
