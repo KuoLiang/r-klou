@@ -70,7 +70,8 @@ for(i in 1:length(jsdf3$lat)) {
   result3[i,j]=jsdf3[[7]][[i]][j,2]  #
   }
 }
-
+V7 = result3$V6
+result3= cbind(result3,V7)
 #####
 library(Matrix)
 library(plyr)
