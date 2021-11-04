@@ -63,6 +63,7 @@ for(i in 1:length(jsdf3$lat)) {      #429個節點
 }
 
 #################雙迴圈一次讀六個
+library(dplyr) 
 result3=matrix(NA, nrow = length(jsdf3$lat), ncol = 6)
 result3=as.data.frame(result3)
 for(i in 1:length(jsdf3$lat)) {
@@ -72,8 +73,10 @@ for(i in 1:length(jsdf3$lat)) {
 }
 V7 = result3$V6
 result3= cbind(result3,V7)
-
-filter(result3, V7 >= 1000)
+filter(result3,V7>1000, V5>0.5)
+result3$V7[result3$V6 >1000] = 1      #V6 大於1000 則為1，寫入V7
+result3$V7[result3$V6 <= 1000] = 0    #V6 小於等於1000 則為0，寫入V7
+result3$V7
 #####
 library(Matrix)
 library(plyr)
