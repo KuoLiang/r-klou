@@ -74,23 +74,18 @@ for(i in 1:length(jsdf3$lat)) {
 rain = result3$V7                   #將雨量獨立欄位命名 rain
 result3= cbind(result3,rain)
 filter(result3,rain>=5)       #過濾顯示雨量大於 5mm
-result3$rain[result3$V7 >=5] = 1      #V6 大於1000 則為1，寫入rain
-result3$rain[result3$V7 < 5] = 0    #V6 小於等於1000 則為0，寫入rain
+result3$rain[result3$V7 >=1] = 1      #V6 大於1000 則為1，寫入rain
+result3$rain[result3$V7 < 1] = 0    #V6 小於等於1000 則為0，寫入rain
 result3$rain=as.factor(result3$rain) #轉為 factor 作為預測用
-#####
+#####以下改寫自 iris prediction procedure
 library(C50)
-input <- result3[,1:14]
-output <- iris[,5]
+input <- result3[,c(1:14)]
+input = input[,-c(7,12,14)] #移除不必要的干擾，例如NA過多者
+output <- result3[,15]
 model1 <- C5.0(input, output, control = C5.0Control(noGlobalPruning = TRUE,minCases=1))
 plot(model1, main="C5.0 Decision Tree - Unpruned, min=1")
 
 model2 <- C5.0(input, output, control = C5.0Control(noGlobalPruning = FALSE))
 plot(model2, main="C5.0 Decision Tree - Pruned")
 
-newcases <- iris[c(1:3,51:53,101:103),]
-newcases
 
-predicted <- predict(model1, newcases, type="class")
-predicted
-predicted <- predict(model2, newcases, type="prob")
-predicted
