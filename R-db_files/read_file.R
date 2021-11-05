@@ -64,19 +64,19 @@ for(i in 1:length(jsdf3$lat)) {      #429個節點
 
 #################雙迴圈一次讀六個
 library(dplyr) 
-result3=matrix(NA, nrow = length(jsdf3$lat), ncol = 6)
+result3=matrix(NA, nrow = length(jsdf3$lat), ncol = 14)
 result3=as.data.frame(result3)
 for(i in 1:length(jsdf3$lat)) {
-  for(j in 1:6){
+  for(j in 1:14){
   result3[i,j]=as.numeric(jsdf3[[7]][[i]][j,2])  #強迫為數值
   }
 }
-V7 = result3$V6
-result3= cbind(result3,V7)
-filter(result3,V7>1000, V5>0.5)
-result3$V7[result3$V6 >1000] = 1      #V6 大於1000 則為1，寫入V7
-result3$V7[result3$V6 <= 1000] = 0    #V6 小於等於1000 則為0，寫入V7
-result3$V7
+rain = result3$V7                   #將雨量獨立欄位命名 rain
+result3= cbind(result3,rain)
+filter(result3,rain>=5)       #過濾顯示雨量大於 5mm
+result3$rain[result3$V7 >=5] = 1      #V6 大於1000 則為1，寫入rain
+result3$rain[result3$V7 < 5] = 0    #V6 小於等於1000 則為0，寫入rain
+result3$rain
 #####
 library(Matrix)
 library(plyr)
