@@ -61,7 +61,7 @@ for(i in 1:length(jsdf3$lat)) {      #429個節點
   result2[i,1]=jsdf3[[7]][[i]][4,2]  #取所有溫度
   result2[i,2]=jsdf3[[7]][[i]][5,2]  #取所有濕度
 }
-
+result2
 #################雙迴圈一次讀六個
 library(dplyr) 
 result3=matrix(NA, nrow = length(jsdf3$lat), ncol = 14)
@@ -77,6 +77,7 @@ filter(result3,rain>=5)       #過濾顯示雨量大於 5mm
 result3$rain[result3$V7 >=1] = 1      #V6 大於1000 則為1，寫入rain
 result3$rain[result3$V7 < 1] = 0    #V6 小於等於1000 則為0，寫入rain
 result3$rain=as.factor(result3$rain) #轉為 factor 作為預測用
+result3
 #####以下改寫自 iris prediction procedure
 library(C50)
 input <- result3[,c(1:14)]
