@@ -3,17 +3,17 @@ library(RMySQL)
 
 #======== Northwind
 #connect = dbConnect(RMySQL::MySQL(), dbname = "northwind",username = "student",
-#                    password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1")
+#                    password = "35162",host = "10.8.0.1")
 #XMAPP
 connect = dbConnect(RMySQL::MySQL(), dbname = "northwind",username = "student",
-                    password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1") #127.0.0.1
+                    password = "35162",host = "klou.ilst.nthu.edu.tw") #127.0.0.1
 dbListTables(connect)
 NW = dbGetQuery(connect ,"select * from orders")
 NW
 
 #======== covid19 TW count by date
 connect2 = dbConnect(RMySQL::MySQL(), dbname = "covid19",username = "student",
-                     password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1")
+                     password = "35162",host = "klou.ilst.nthu.edu.tw")
 dbListTables(connect2)
 CT = dbGetQuery(connect2 ,"select count(*) from cases_tw")
 CT
