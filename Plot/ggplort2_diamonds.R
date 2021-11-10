@@ -1,4 +1,4 @@
-install.packages("ggplot2")
+if (!require("ggplot2")) install.packages("ggplot2")
 library(ggplot2)
 d=diamonds
 x=diamonds$carat
@@ -12,6 +12,7 @@ plot(x)   #x 為重量，num
 plot(y)   #y 為價錢，int
 plot(z)   #z 為色澤，factor
 plot(x,y) #xy vector
+plot(x,y,col=z) #xy vector
 plot(y,x) #yx vector
 plot(z,y) #z factor;  y vetor boxplot
 plot(y,z) #y vector;  z factor plot  
@@ -26,15 +27,11 @@ plot(y~x+z)
 pairs(d)
 ########################################
 w=diamonds$table  #w=table
-coplot(y~x|z) #given z
+coplot(y~x|z) #given z ,conditional plot
 coplot(y~x|z+w)  #given z
 
 ########################################
-#require(stats); require(graphics) # for time
-mydata=ldeaths
-mydata$fdeaths
-plot(ldeaths)
-plot(mdeaths, fdeaths)
+
 data(AirPassengers)
 class(AirPassengers)
 AirPassengers
