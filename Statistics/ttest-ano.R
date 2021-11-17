@@ -1,8 +1,3 @@
-x <- sample(c(1:100),size=20,replace=TRUE)
-y <- sample(c(1:100),size=20,replace=TRUE)
-t.test(x,y)
-######
-
 x = rnorm(30,5,1) #30個隨機數，平均數5，標準差1
 y = rnorm(30,4,2) #30個隨機數，平均數4，標準差2
 t.test(x,y,var.equal = T)
