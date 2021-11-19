@@ -1,6 +1,4 @@
 library(e1071 )
-model <- svm(Species ~ ., data = iris)
-#example("svm")
 set.seed(2020)
 train.index = sample(x=1:nrow(iris), size=ceiling(0.8*nrow(iris) )) #抽樣8/2
 train_set = iris[train.index,]

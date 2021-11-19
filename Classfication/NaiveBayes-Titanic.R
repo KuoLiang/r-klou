@@ -1,4 +1,4 @@
-install.packages(“e1071”)
+if(!require("e1071")) install.packages("e1071")
 library(e1071)
 ?naiveBayes 
 
@@ -21,3 +21,4 @@ Naive_Bayes_Model=naiveBayes(Survived ~., data=Titanic_dataset)
 Naive_Bayes_Model
 NB_Predictions=predict(Naive_Bayes_Model,Titanic_dataset)
 table(NB_Predictions,Titanic_dataset$Survived)
+NB_Predictions
