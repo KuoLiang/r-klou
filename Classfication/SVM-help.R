@@ -54,7 +54,7 @@ tune.model = tune(svm,
                   carat ~.,
                   data=sample_data,
                   kernel="radial", # RBF kernel function
-                  range=list(cost=c(1,10), gamma=c(1,10))
+                  range=list(cost=c(1,10), gamma=c(0.1,1))
 )
 # 調參數的最主要一行
 # cost 處罰系數,愈大時代表愈不能容忍誤判,會使用MARGIN變小,易overfitting
