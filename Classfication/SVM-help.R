@@ -1,3 +1,5 @@
+if(! require("e1071")) install.packages("e1071")
+library(e1071)
 data(iris)
 #attach(iris) #search path
 
@@ -30,6 +32,7 @@ attr(pred, "decision.values")  #all attributes
 
 if(!require("mlbench")) install.packages("mlbench")
 library("mlbench")
+#gamma = how far the influence of s single training example reaches
 
 tune.model = tune(svm,
                   Species~.,
@@ -43,11 +46,20 @@ summary(tune.model)
 #### try another dataset
 library(ggplot2)
 data(diamonds)
+plot(diamonds$carat,diamonds$price)
+set.seed(2021)
+sample_index= sample(nrow(diamonds),size=10000)
+sample_data = diamonds[sample_index,]
 tune.model = tune(svm,
-                  color ~.,
-                  data=diamonds,
+                  carat ~.,
+                  data=sample_data,
                   kernel="radial", # RBF kernel function
-                  range=list(cost=10^(-1:2), gamma=c(.5,1,2))# 調參數的最主要一行
+                  range=list(cost=c(1,10), gamma=c(1,10))
 )
+# 調參數的最主要一行
+# cost 處罰系數,愈大時代表愈不能容忍誤判,會使用MARGIN變小,易overfitting
+# cost 愈小, margin 愈大
+# gamma 影響系數,GAMMA愈大時,近點的影響力大,超平面會考慮近點,易overfitting
+# gamma 愈小，平面愈平滑
 plot(tune.model)
 summary(tune.model)
