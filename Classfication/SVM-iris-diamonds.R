@@ -9,7 +9,7 @@ model <- svm(Species ~ ., data = iris)
 
 # alternatively the traditional interface: f(x)=y ；y為依變數；x為自變數
 x <- subset(iris, select = -Species)
-y <- Species
+y <- iris$Species
 model <- svm(x, y)  #同上的另一種寫法
 
 print(model)
