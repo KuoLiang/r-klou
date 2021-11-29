@@ -25,6 +25,12 @@ shinyServer(function(input, output) {
     print(p)
   })
   
+  #scatterplot3d(iris)
+  output$plot2 <- renderPlot({
+    p3 <- scatterplot3d(iris)
+    print(p3)
+  })
+  
   # Generate a head of the data
   output$head <- renderPrint({
     head(iris)
