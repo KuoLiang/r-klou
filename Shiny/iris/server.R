@@ -9,7 +9,7 @@ shinyServer(function(input, output) {
   
   # Create a reactive text
   text <- reactive({
-    paste(input$variable1, 'versus', input$variable2)
+    paste(input$variable1, '以及', input$variable2)
   })
   
   # Return as text the selected variables

@@ -1,0 +1,13 @@
+name: iris
+title: iris
+username:
+account: kuo-liang-ou
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5220831
+bundleId: 5303348
+url: https://kuo-liang-ou.shinyapps.io/iris/
+when: 1638156159.66976
+lastSyncTime: 1638156159.66976
+asMultiple: FALSE
+asStatic: FALSE
