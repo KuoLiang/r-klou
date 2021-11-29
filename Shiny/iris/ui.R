@@ -4,37 +4,42 @@ library(shiny)
 shinyUI(pageWithSidebar(
   
   # Application title
-  headerPanel("Shiny IRIS Dataset: 這是標題"),
+  headerPanel("Moawia Eldow - Using Shiny with IRIS Dataset: Plotting Two Variables"),
   
-  # Sidebar 
+  # Sidebar with controls to select the variables to plot 
   sidebarPanel(
     
-    h3("請選擇二個觀察變數"),
-    selectInput("variable1", "X軸",
+    h3("* Select two varibles to be ploted:"),
+    selectInput("variable1", "First variable:",
                 list("Sepal length" = "Sepal.Length",
                      "Sepal width"  = "Sepal.Width",
                      "Petal length" = "Petal.Length",
                      "Petal width"  = "Petal.Width")),
     
-    selectInput("variable2", "Y軸",
+    selectInput("variable2", "Second variable:",
                 list("Petal length" = "Petal.Length",
                      "Petal width"  = "Petal.Width",
                      "Sepal length" = "Sepal.Length",
                      "Sepal width"  = "Sepal.Width"))
   ),
-
+  
   mainPanel(
     tabsetPanel(
-      tabPanel("Plot",  # tab 的顯示字
+      tabPanel("Plot", 
                h3 ("* Here, The plot of the two selected variables:"),
                h3(textOutput("caption")),
                plotOutput("plot")),
-      tabPanel("Readme", # tab 的顯示字
-               h3("感謝https://rpubs.com/meldow/Shiny-IRIS提供範例"),
-               h3(""),
-               h3(""),
+      
+      tabPanel("Readme", 
+               h3 ("* Here, The documentaion about this application:"),
+               h3 (""),
+               h3("This shiny application used to plot two variables from IRIS data set."),
                h3("The head of IRIS dataset:"),
                verbatimTextOutput("head")),
-
+      h3 (""),
+      h3 ("To start, you need to select two variables from the list."),
+      h3 ("Then, you can see the plot in the plot panel using species as colors."),
+      h3 (""),
+      h3 ("ENJOY IT")
     ))
 ))
