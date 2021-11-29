@@ -1,6 +1,5 @@
+#iris-cluster example from RStudio Gallery
 library(shiny)
-library(datasets)
-library(ggplot2)
 #getwd()
 runApp("Shiny/iris-class")
 

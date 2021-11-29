@@ -7,6 +7,8 @@
 # k-means only works with numerical variables,
 # so don't give the user the option to select
 # a categorical variable
+library(datasets)
+
 vars <- setdiff(names(iris), "Species")
 
 pageWithSidebar(
