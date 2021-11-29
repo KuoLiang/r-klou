@@ -33,6 +33,7 @@ shinyServer(function(input, output) {
   
   # Generate a head of the data
   output$head <- renderPrint({
-    head(iris)
+    #head(iris)
+    iris
   })
 })

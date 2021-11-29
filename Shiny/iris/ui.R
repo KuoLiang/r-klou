@@ -35,10 +35,10 @@ shinyUI(pageWithSidebar(
   mainPanel(
     tabsetPanel(                   #標簽集
       tabPanel("2D圖示",plotOutput("plot")),
-      
       tabPanel("範例2",plotOutput("plot2",width="100%",height="600px")),
       tabPanel("範例3",plotOutput("plot3")), 
-      tabPanel("關於本範例"),
+      tabPanel("關於本範例",verbatimTextOutput("head")),
+      
       h3 ("Foot note here")
     ))
 ))
