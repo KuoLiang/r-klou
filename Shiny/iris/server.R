@@ -25,8 +25,19 @@ shinyServer(function(input, output) {
     print(p)
   })
   
+  #scatterplot3d(iris)
+  output$plot2 <- renderPlot({
+    colors <- c("red", "green", "blue")
+    colors_num <- colors[as.numeric(iris$Species)]  #依品種編號123
+    p3 <- scatterplot3d(iris[,1:3], pch = 16, color=colors_num)
+    legend("right", legend = levels(iris$Species),
+           col =  colors, pch = 16)
+    print(p3)
+  })
+  
   # Generate a head of the data
   output$head <- renderPrint({
-    head(iris)
+    #head(iris)
+    iris
   })
 })
