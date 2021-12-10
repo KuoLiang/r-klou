@@ -1,0 +1,13 @@
+name: hello_shiny
+title: hello_shiny
+username:
+account: kuo-liang-ou
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5220159
+bundleId: 5302952
+url: https://kuo-liang-ou.shinyapps.io/hello_shiny/
+when: 1638146198.03125
+lastSyncTime: 1638146198.03125
+asMultiple: FALSE
+asStatic: FALSE
