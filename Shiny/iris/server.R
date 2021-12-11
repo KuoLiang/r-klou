@@ -1,7 +1,7 @@
 library(shiny)
 library(datasets)
 library(ggplot2)
-
+library(scatterplot3d)
 data(iris)
 
 # Define server logic required to plot variables

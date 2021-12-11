@@ -3,9 +3,8 @@ install.packages("class")
 install.packages("nnet")
 library(nnet)
 library(neuralnet)
-library(caret) 
 library(class)
-iris_dummy = cbind(iris, class.ind(iris$Species)) #dummy variables
+iris_dummy = cbind(iris, class.ind(iris$Species)) #class.ind = dummy variables
 iris_dummy
 set.seed(2020)
 sample_size = 0.8 * nrow(iris_dummy)
@@ -32,8 +31,8 @@ model_neu2$result.matrix
 result_pre2=predict(model_neu2, iris_test)
 result_pre2
 ###
-result_pre=round(result_pre)
-pred.df = as.data.frame(result_pre)
+result_pre=round(result_pre)#四捨五入
+pred.df = as.data.frame(result_pre) 
 pred.df$Species =""
 pred.df
 for(i in 1:nrow(pred.df)){
@@ -45,9 +44,12 @@ pred.df # you may find out some empty results
 #######################
 #tunning the best parameter
 #######################
+install.packages("caret")
+library(caret) 
+
 best_model = caret::train(form=ann_formula, data=iris_train, method="neuralnet",  
-            #tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0:4)), 
-               tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0)),               
+                tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0:4)), 
+            #   tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0)),               
                learningrate = 0.01,  # learning rate
                threshold = 0.01,     # partial derivatives of the error function, a stopping criteria
                stepmax = 5e5         # 最大的ieration數 = 500000(5*10^5)
