@@ -10,8 +10,13 @@ C2 = rnorm(300,-2); #mean = -2 ; sd =1
 C2
 summary(C2)
 
-### 觀察C1C2的分布
-boxplot(C1,C2)
+#random generate C3
+C3 = rnorm(300,2,2); #mean = 2 ; sd =2
+C3
+summary(C3)
+
+### 觀察C1C2C3的分布
+boxplot(C1,C2,C3)
 
 ### C1 C2 ROC and threshold
 roc = roc.curve(C1, C2, curve = TRUE) #curve must be T
