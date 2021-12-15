@@ -24,3 +24,5 @@ plot(perf.svm, avg="vertical", lwd=3, col="red", spread.estimate="stderror",plot
 plot(perf.nn, avg="vertical", lwd=3, col="blue",
      spread.estimate="stderror",plotCI.lwd=2,add=TRUE)
 legend(0.6,0.6,c('SVM','NN'),col=c('red','blue'),lwd=3)
+
+###########################
