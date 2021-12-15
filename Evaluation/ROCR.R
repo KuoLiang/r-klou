@@ -1,14 +1,14 @@
 install.packages("ROCR")
 library(ROCR)
 data(ROCR.simple)
-ROCR.simple
+ROCR.simple      #200 samples of 1 and 0
 ROCR.simple$predictions
 ROCR.simple$labels
 pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels) 
 perf <- performance(pred,"tpr","fpr")
 perf
 plot(perf)
-perf2 <- performance(pred, measure = "auc")
+perf2 <- performance(pred, measure = "auc")   #area under curve
 perf2@y.values
 ###
 
