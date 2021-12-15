@@ -12,12 +12,13 @@ summary(C2)
 C3 = rnorm(300,2); #mean = 2 ; sd =1
 C3
 summary(C3)
-###
-roc = roc.curve(C1, C2, curve = TRUE)
-roc
-plot(roc)
 ### 觀察C1C2C3的分布
 boxplot(C1,C2,C3)
+###
+roc = roc.curve(C1, C2, curve = TRUE) #curve must be T
+roc
+plot(roc)
+
 
 ###針對C1C2
 ### PR Curve - Precision-Recall
