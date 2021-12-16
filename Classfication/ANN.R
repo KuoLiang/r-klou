@@ -6,7 +6,7 @@ library(neuralnet)
 library(class)
 iris_dummy = cbind(iris, class.ind(iris$Species)) #class.ind = dummy variables
 iris_dummy
-set.seed(2020)
+set.seed(2021)
 sample_size = 0.8 * nrow(iris_dummy)
 sample_index = sample(nrow(iris_dummy),sample_size)
 iris_train = iris_dummy[sample_index,]
