@@ -24,7 +24,11 @@ inspect(rules.all)
 plot(rules.all,interactive=TRUE)
 x <- rules.all@quality$support
 y <- rules.all@quality$confidence
+plot(rules.all,cex=2)
 text(x, y, rownames(rules.all@quality))
+plot(rules.all, method="graph")
+
+
 
 rules <- apriori(Titanic.raw.factor, control = list(verbose=F),
                  parameter = list(minlen=2, supp=0.005, conf=0.8), 
@@ -32,3 +36,6 @@ rules <- apriori(Titanic.raw.factor, control = list(verbose=F),
                                    default="lhs"))
 rules.sorted <- sort(rules, by="lift")
 inspect(rules.sorted)
+
+plot(rules.all, method="paracoord", 
+     control=list(reorder=TRUE))
