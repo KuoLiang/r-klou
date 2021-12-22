@@ -1,37 +1,42 @@
-install.packages("neuralnet")
-install.packages("class")
-install.packages("nnet")
-library(nnet)
+#install.packages("neuralnet")
+#install.packages("class")
+#install.packages("nnet")
 library(neuralnet)
 library(class)
-iris_dummy = cbind(iris, class.ind(iris$Species)) #class.ind = dummy variables
-iris_dummy
+library(nnet)
+#class.ind = dummy variables by nnet package
+#Generates a class indicator function from a given factor.
+iris_dummy = cbind(iris, class.ind(iris$Species))  
+#增加三欄編碼，因為只能用數值作為class
+iris_dummy 
 set.seed(2021)
-sample_size = 0.8 * nrow(iris_dummy)
-sample_index = sample(nrow(iris_dummy),sample_size)
+sample_size = 0.8 * nrow(iris_dummy)   #80% 是多少呢？
+sample_index = sample(nrow(iris_dummy),sample_size) #取樣索引
 iris_train = iris_dummy[sample_index,]
 iris_test = iris_dummy[-sample_index,]
 #neuralnet(formula, data, hidden = 1, threshold = 0.01) 
 ann_formula = setosa + versicolor + virginica ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
-#不可用 ann_formula = Species ~ .
+#這裹不可用 ann_formula = Species ~ .
+#setosa 變成欄位了；versicolor and virginica 也是欄位
 #############################################
 #ANN
 #############################################
 
-model_neu= neuralnet(formula = ann_formula, data=iris_train) #use the training data
-plot(model_neu)
-model_neu$result.matrix  #show out the nn information
-result_pre=predict(model_neu, iris_test) #predict the test data
+model1= neuralnet(formula = ann_formula, data=iris_train) #use the training data
+plot(model1)
+model1 #show out the nn information
+result_pre=predict(model1, iris_test) #predict the test data
 result_pre #prediction result
 
 
-model_neu2= neuralnet(formula = ann_formula, data=iris_train, hidden=2) #node of hidden layer = 2
-plot(model_neu2)
-model_neu2$result.matrix
-result_pre2=predict(model_neu2, iris_test)
+model2= neuralnet(formula = ann_formula, data=iris_train, hidden=2) #node of hidden layer = 2
+plot(model2)
+model2
+result_pre2=predict(model2, iris_test)
 result_pre2
 ###
-result_pre=round(result_pre)#四捨五入
+#
+result_pre=round(result_pre)#四捨五入 ,也可用別的閥值
 pred.df = as.data.frame(result_pre) 
 pred.df$Species =""
 pred.df
