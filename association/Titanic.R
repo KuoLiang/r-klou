@@ -1,11 +1,11 @@
 library(arules)
 library(arulesViz)
-str(Titanic)
+str(Titanic)  #display the structure 32objects, 5 variables
 Titanic.df <- as.data.frame(Titanic)
 Titanic.df
 
 Titanic.raw=NULL
-for(i in 1:4)
+for(i in 1:4)   #共有四欄,第五欄不用
 {
   Titanic.raw = cbind(Titanic.raw,
                       rep(as.character(Titanic.df[,i]),
