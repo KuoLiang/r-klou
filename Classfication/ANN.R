@@ -9,7 +9,7 @@ library(nnet)
 iris_dummy = cbind(iris, class.ind(iris$Species))  
 #增加三欄編碼，因為只能用數值作為class
 iris_dummy 
-set.seed(2021)
+set.seed(2020)
 sample_size = 0.8 * nrow(iris_dummy)   #80% 是多少呢？
 sample_index = sample(nrow(iris_dummy),sample_size) #取樣索引
 iris_train = iris_dummy[sample_index,]
@@ -53,15 +53,15 @@ install.packages("caret")
 library(caret) 
 
 best_model = caret::train(form=ann_formula, data=iris_train, method="neuralnet",  
-                tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0:4)), 
+                tuneGrid = expand.grid(.layer1=c(1:3), .layer2=c(0:3), .layer3=c(0:3)), 
             #   tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0)),               
                learningrate = 0.01,  # learning rate
-               threshold = 0.01,     # partial derivatives of the error function, a stopping criteria
+               threshold = 0.1,     # partial derivatives of the error function, a stopping criteria
                stepmax = 5e5         # 最大的ieration數 = 500000(5*10^5)
 )
 best_model
 plot(best_model)
-model_neu_final= neuralnet(formula = ann_formula, data=iris_train, hidden=c(1,2))
+model_neu_final= neuralnet(formula = ann_formula, data=iris_train, hidden=c(2,1,1))
 plot(model_neu_final)
 model_neu_final$result.matrix
 result_final=predict(model_neu_final, iris_test)
