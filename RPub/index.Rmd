@@ -1,0 +1,66 @@
+---
+title: "大數據資料分析課程講義"
+author: "區國良（Kuo-Liang Ou）"
+date: "1/9/2022"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: 
+      collapsed: false
+      smooth_scroll: false
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 關於本講義
+
+- 這是區國良教授自編之「大數據資料分析」課程講義,置於 Rpub 為其中有關 R Coding 的部分內容
+- 該課程每學年開設於國立清華大學 學習科學與科技研究所
+- 授課內容包含資料庫管理系統、資料收集與清洗、資料視覺化、R語言入門、機器學習（分類、聚類、關聯法則、類神經網路）以及競賽實作
+- 學生必須自備筆電(Windows or Mac),安裝 R & R Studio, MySQL, PowerBI, Shiny 等環境
+
+- 課程簡述
+  -- 在學習科技（learning technology)所支持的學習環境中，學習歷程以及師生之間的互動可經由各種媒體記錄的數位資料提供教師深入分析學生狀 況，尤其在網路學習環境中所累積的大量數據(Big Data)，反應了過去難以人工發掘的學習現象，使得應用大數據分析技術成為數位學習開課教 師所必備的重要的能力之一。 本課程引導學生在面對數位學習中的大量學習歷程時應有的觀念，同時學習如何使用資料庫、分析語言以及機器學習(machine learning)工具挖 掘學習歷程中所反應的學習狀況，作為設計數位教學內容時的參考
+
+- 課程目標： 
+
+  * 認識數位學習平台及學習歷程資料庫 
+  * 了解資料探勘的基礎概念 
+  * 熟悉機器學習分析工具操作 
+
+事不宜遲，快打開 R Studio,新增R Script 輸入以下程式碼，再按Run 執行你的第一支 R
+ 語言程式吧！
+
+```{r helloR}
+print ("hello R")
+```
+
+# 內容
+
+## R 語言初步
+### 環境介紹
+### 資料型別
+#### 字元 character
+#### 整數 integer
+#### 雙位元 double
+#### complex
+#### logical
+### 物件
+#### 向量 vector
+#### 陣列 array
+#### 因子 factor
+#### 清單 list
+#### 矩陣 matrix
+#### 資料框 dataframe
+#### 物件轉換
+  
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
