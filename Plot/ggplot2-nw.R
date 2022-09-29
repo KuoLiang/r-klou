@@ -76,3 +76,7 @@ t + geom_boxplot()
 u = ggplot(data=nw, aes(x=Sales))
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
   facet_grid(EmployeeID~.)
+u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
+  facet_grid(.~Year)
+u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
+  facet_grid(EmployeeID~Year)
