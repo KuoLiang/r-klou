@@ -1,3 +1,5 @@
+install.packages("ggplot2")
+library(ggplot2)
 myquery <-
 "SELECT e.EmployeeID, Year(o.OrderDate) as Year,o.ShipCountry, od.Quantity*od.UnitPrice as Sales,od.Discount, o.Freight
 FROM employees as e, orders as o, orderdetails as od
@@ -12,7 +14,8 @@ dbListTables(mysqlconnection)
 
 result <-  dbSendQuery(mysqlconnection, myquery)
 nw <-  fetch(result, n=-1)
-#nw <-  read.csv("/Users/klou/Downloads/e.csv")
+#setwd("Plot")
+#nw <-  read.csv("NWSales.csv")
 nw
 
 nw$Year = factor(nw$Year)
