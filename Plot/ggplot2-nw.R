@@ -68,6 +68,8 @@ f1 + geom_bar(stat="summary", fun="mean",position = "fill") #normalized
 f1 + geom_boxplot()
 f1 + geom_violin()
 f2 + geom_violin()
+f2 + geom_violin() + ylim(0,1000)
+f2 + geom_violin() + ylim(0,1000) + coord_cartesian(ylim=c(0,500))
 
 ##########################################
 #Facet
