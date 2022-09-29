@@ -59,13 +59,16 @@ e1+ geom_quantile()
 #Two Variables - Discrete X and Continuous Y
 f <- ggplot(data=nw, aes(x=EmployeeID,y=Sales))
 f1 <-  ggplot(data=nw, aes(x=EmployeeID,y=Sales,fill=Year))
+f2 <-  ggplot(data=nw, aes(x=ShipCountry,y=Sales))
 ##########################################
 f + geom_point()
 f + geom_bar(stat="summary", fun="mean") #default position=stack
 f1 + geom_bar(stat="summary", fun="mean",position = "dodge")
 f1 + geom_bar(stat="summary", fun="mean",position = "fill") #normalized
 f1 + geom_boxplot()
-f + geom_violin()
+f1 + geom_violin()
+f2 + geom_violin()
+
 ##########################################
 #Facet
 u <- ggplot(data=nw, aes(x=Sales))
