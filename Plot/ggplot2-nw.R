@@ -1,14 +1,13 @@
 install.packages("ggplot2")
 library(ggplot2)
+install.packages("RMySQL")
+library("RMySQL")
 myquery <-
 "SELECT e.EmployeeID, Year(o.OrderDate) as Year,o.ShipCountry, od.Quantity*od.UnitPrice as Sales,od.Discount, o.Freight
 FROM employees as e, orders as o, orderdetails as od
 WHERE e.EmployeeID=o.EmployeeID AND o.OrderID = od.OrderID"
-
 #myquery <-  "select EmployeeID from employees"
 
-install.packages("RMySQL")
-library("RMySQL")
 mysqlconnection <-  dbConnect(MySQL(), user = 'student', password = 's?P%3p7DeGw5H#HM', dbname = 'northwind' ,host = '10.8.0.1')
 dbListTables(mysqlconnection)
 
@@ -17,11 +16,13 @@ nw <-  fetch(result, n=-1)
 #setwd("Plot")
 #nw <-  read.csv("NWSales.csv")
 nw
-
+##########################################
+#transform
+##########################################
 nw$Year = factor(nw$Year)
 nw$EmployeeID = factor(nw$EmployeeID)
 nw$ShipCountry = factor(nw$ShipCountry)
-library(ggplot2)
+
 ##########################################
 #One Variable - Continuous
 c <-  ggplot(data=nw, aes(Sales))
@@ -46,37 +47,30 @@ d1 + geom_bar(position="dodge")+ coord_flip()
 
 ##########################################
 #Two Variables - Continuous X and Continuous Y
-e <- ggplot(data=nw, aes(x=EmployeeID,y=Sales))
+e <- ggplot(data=nw, aes(x=Freight,y=Sales))
+e1 <-  ggplot(data=nw, aes(x=Freight,y=Sales,fill=Year,color=Year))
 ##########################################
 e + geom_point()
-p + geom_area()  #y=count
-# geom_bar , summary as default
-p <-  ggplot(data=nw, aes(x=EmployeeID,y=Sales,fill=Year))
-p + geom_point()
-p + geom_bar(stat="summary", fun="mean") #default position=stack
-p + geom_bar(stat="summary", fun="mean",position = "dodge")
-p + geom_bar(stat="summary", fun="mean",position = "fill") #normalized
-# geom_col ,
-p + geom_col()
+e + geom_point() + geom_smooth()
+e1+ geom_point() + geom_smooth()
+e1+ geom_quantile() 
 
-q = ggplot(data=nw, aes(x=EmployeeID))
-q + geom_histogram(stat="count")
-q + geom_histogram(stat="count", color="Blue", fill="Green")
+##########################################
+#Two Variables - Discrete X and Continuous Y
+f <- ggplot(data=nw, aes(x=EmployeeID,y=Sales))
+f1 <-  ggplot(data=nw, aes(x=EmployeeID,y=Sales,fill=Year))
+##########################################
+f + geom_point()
+f + geom_bar(stat="summary", fun="mean") #default position=stack
+f1 + geom_bar(stat="summary", fun="mean",position = "dodge")
+f1 + geom_bar(stat="summary", fun="mean",position = "fill") #normalized
+f1 + geom_boxplot()
+f + geom_violin()
+##########################################
+#Facet
+u <- ggplot(data=nw, aes(x=Sales))
+##########################################
 
-r = ggplot(data=nw, aes(x=Sales))
-r + geom_histogram(binwidth=100, aes(fill=EmployeeID))
-r + geom_histogram(binwidth=1000, aes(fill=EmployeeID), color="Black")
-r + geom_density(aes(fill=EmployeeID,alpha = 0.2))
-r + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
-    facet_wrap(~ EmployeeID)
-
-s = ggplot(data=nw)
-s + geom_histogram(aes(x=Sales))
-
-t = ggplot(data=nw, aes(x=EmployeeID,y=Sales))
-t + geom_boxplot()
-
-u = ggplot(data=nw, aes(x=Sales))
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
   facet_grid(EmployeeID~.)
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
