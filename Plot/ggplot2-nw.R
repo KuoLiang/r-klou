@@ -82,3 +82,14 @@ u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
   facet_grid(.~Year)
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
   facet_grid(EmployeeID~Year)
+##########################################
+
+library(dplyr)
+f <-  filter(nw, ShipCountry == "France")
+f2 <- filter(f,Sales >= 1000, Sales <=1100)
+f2
+selected = select(iris, Sepal.Length, Sepal.Width, Petal.Length)
+newIris = mutate(iris, greater.mean = Sepal.Width > mean(Sepal.Width))
+newIris2 = mutate(iris, area = Sepal.Length * Sepal.Width)
+myaesc = arrange(newIris, Petal.Length, Petal.Width)
+mydesc = arrange(newIris, desc(Petal.Length), Petal.Width)

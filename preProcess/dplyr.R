@@ -1,3 +1,7 @@
+install.packages("tidyverse")
+# Alternatively, install just dplyr:
+install.packages("dplyr")
+
 library(dplyr)
 data(iris)
 virginica = filter(iris, Species == "virginica")
