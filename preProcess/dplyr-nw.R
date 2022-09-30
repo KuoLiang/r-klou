@@ -1,4 +1,4 @@
-setwd("/Users/klou/Documents/GitHub/r-klou/preProcess")
+setwd("r-klou/preProcess")
 nw <-  read.csv("NWSales.csv")
 library(dplyr)
 ##########################################
