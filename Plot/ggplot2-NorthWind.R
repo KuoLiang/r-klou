@@ -1,14 +1,13 @@
 ##########################################
-#editor: Kuo-Liang Ou
-#National Tsing Hua University ILST
-#reference: ggplot2 cheat cheet
+#Editor: Kuo-Liang Ou
+#Affililation: National Tsing Hua University ILST
+#Reference: ggplot2 cheat sheet
 ##########################################
-
-source("mysql_conn.R")
+source("mysql_conn.R") #connect to mysql
 
 nw <-  fetch(myquery_result, n=-1)  #read all the data from result
 #setwd("somewhere of your working directory")
-#nw <-  read.csv("NWSales.csv")
+#nw <-  read.csv("https://github.com/KuoLiang/r-klou/blob/f6cc7b13890bbedd42d9e5d4a7e684dafa239495/Plot/NWSales.csv")
 nw
 ##########################################
 #transform
