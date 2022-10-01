@@ -20,7 +20,7 @@ library(ggplot2)
 ##########################################
 #hints:
 #Aesthetic : x y shape, color, size
-#Layer : point ; others like geom_line() geom_bar() geom_violin()
+#Layer : geom_point() geom_line() geom_bar() geom_violin()
 #                 geom_boxplot() geom_histogram() geom_path()
 # the followings are the practices of geom functions
 ##########################################

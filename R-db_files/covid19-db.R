@@ -1,23 +1,33 @@
+##########################################
+#Editor: Kuo-Liang Ou
+#Affililation: National Tsing Hua University ILST
+#Reference: https://covid-19.nchc.org.tw/     國網中心
+##########################################
 install.packages('RMySQL')
 library(RMySQL)
 
-connect = dbConnect(RMySQL::MySQL(), dbname = "northwind",username = "student", 
-                    password = "35162",host = "klou.ilst.nthu.edu.tw")
+##########################################
+#try to connect the northwind db
+#please change your connection information by yourself
+##########################################
+connect <-  dbConnect(RMySQL::MySQL(), dbname = "northwind",username = "student", 
+          password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1")
 dbListTables(connect)
-NW = dbGetQuery(connect ,"select * from orders")
+NW <-  dbGetQuery(connect ,"select * from orders")
 NW
 class(NW)
-############
-connect2 = dbConnect(RMySQL::MySQL(), dbname = "covid19-2021",username = "student", 
-                     password = "35162",host = "klou.ilst.nthu.edu.tw")
-dbListTables(connect2)
+NW$ShipCity
+##########################################
+connect19 <-  dbConnect(RMySQL::MySQL(), dbname = "covid19",username = "student", 
+            password = "s?P%3p7DeGw5H#HM",host = "10.8.0.1")
+dbListTables(connect19)
 
-CT = dbGetQuery(connect2, "SET NAMES 'utf8'") 
-CT = dbGetQuery(connect2 ,"select * from daily")
-CT
-CT = dbGetQuery(connect2 ,"SELECT * FROM `daily` WHERE `日期` BETWEEN '2021-10-1' and '2021-10-31';")
-CT
-CT = dbGetQuery(connect2 ,"SELECT `新增確診數`,count(*) FROM `daily` group by `新增確診數`;")
-CT
-class(CT)
-CT$新增確診數
+#set the character_set_client,connection,result of MySQL
+C19 <-  dbGetQuery(connect19, "SET NAMES 'utf8'") 
+C19 <-  dbGetQuery(connect19 ,"select * from export")
+C19
+#date data type should be transformed at first
+C19 <-  dbGetQuery(connect19 ,"SELECT * FROM `export` WHERE `date` BETWEEN '2022-01-01' and '2022-01-31';")
+C19
+class(C19)
+C19$press

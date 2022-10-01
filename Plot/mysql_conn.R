@@ -1,10 +1,10 @@
 # Package names
-packages <- c("ggplot2", "dplyr", "RMySQL")
+package_list <- c("ggplot2", "dplyr", "RMySQL")
 
 # Install packages not yet installed
-installed_packages <- packages %in% rownames(installed.packages())
+installed_packages <- package_list %in% rownames(installed.packages())
 if (any(installed_packages == FALSE)) {
-  install.packages(packages[!installed_packages])
+  install.packages(package_list[!installed_packages])
 }
 
 library("RMySQL")
