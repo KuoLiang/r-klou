@@ -1,3 +1,4 @@
+#install.packages("ggplot2")
 library(ggplot2)
 qplot(data=iris,x=Species) # 指定X軸
 qplot(data=iris,x=Petal.Width)
