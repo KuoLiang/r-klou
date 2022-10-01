@@ -1,19 +1,13 @@
-install.packages("ggplot2")
-library(ggplot2)
-install.packages("RMySQL")
-library("RMySQL")
-myquery <-
-"SELECT e.EmployeeID, Year(o.OrderDate) as Year,o.ShipCountry, od.Quantity*od.UnitPrice as Sales,od.Discount, o.Freight
-FROM employees as e, orders as o, orderdetails as od
-WHERE e.EmployeeID=o.EmployeeID AND o.OrderID = od.OrderID"
-#myquery <-  "select EmployeeID from employees"
+##########################################
+#editor: Kuo-Liang Ou
+#National Tsing Hua University ILST
+#reference: ggplot2 cheat cheet
+##########################################
 
-mysqlconnection <-  dbConnect(MySQL(), user = 'student', password = 's?P%3p7DeGw5H#HM', dbname = 'northwind' ,host = '10.8.0.1')
-dbListTables(mysqlconnection)
+source("mysql_conn.R")
 
-result <-  dbSendQuery(mysqlconnection, myquery)
-nw <-  fetch(result, n=-1)
-#setwd("Plot")
+nw <-  fetch(myquery_result, n=-1)  #read all the data from result
+#setwd("somewhere of your working directory")
 #nw <-  read.csv("NWSales.csv")
 nw
 ##########################################
@@ -22,7 +16,14 @@ nw
 nw$Year = factor(nw$Year)
 nw$EmployeeID = factor(nw$EmployeeID)
 nw$ShipCountry = factor(nw$ShipCountry)
+library(ggplot2)
 
+##########################################
+#hints:
+#Aesthetic : x y shape, color, size
+#Layer : point ; others like geom_line() geom_bar() geom_violin()
+#                 geom_boxplot() geom_histogram() geom_path()
+# the followings are the practices of geom functions
 ##########################################
 #One Variable - Continuous
 c <-  ggplot(data=nw, aes(Sales))
