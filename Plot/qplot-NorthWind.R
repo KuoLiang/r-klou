@@ -17,6 +17,12 @@ nw$ShipCountry = factor(nw$ShipCountry)
 
 library(ggplot2)
 ##########################################
+#x 為類別資料 ； y 為 count 
+##########################################
+qplot(data=nw,x=EmployeeID)
+qplot(data=nw,x=EmployeeID,
+      fill=Year)
+##########################################
 #x 為連續資料 ; y 為連續資料
 ##########################################
 qplot(data=nw,x=Freight,y=Sales)
@@ -25,7 +31,9 @@ qplot(data=nw,x=Freight,y=Sales,
 qplot(data=nw,x=Freight,y=Sales,
       geom = "smooth")
 qplot(data=nw,x=Freight,y=Sales,
-      geom = "smooth", color=Year, facets = EmployeeID~Freight)
+      geom = "smooth", color=Year, facets = Year~.)
+qplot(data=nw,x=Freight,y=Sales,
+      geom = "smooth", color=Year, facets = Year~EmployeeID)
 
 ##########################################
 #x 為類別資料 ; y 為連續資料
