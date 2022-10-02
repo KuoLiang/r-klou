@@ -81,9 +81,9 @@ t31 <- select(t11,Sales)  #only Sales
 #combine variables
 #########################
 
-u <- bind_cols(t21,t31) # if you are sure the orders of two df
+u <- bind_cols(t21,t31) # by order of the two data frame
 #
-t2id <- rep(1:nrow(t2)) 
+t2id <- rep(1:nrow(t2)) #repeat 1,2,3,... to the number of row
 t22 <- cbind(id=t2id,t2)
 t3id <- rep(1:nrow(t3)) 
 t32 <- cbind(id=t3id,t3)
@@ -91,3 +91,26 @@ t32 <- cbind(id=t3id,t3)
 u1 <- left_join(t22,t32,by="id")
 u2 <- right_join(t22,t32,by="id")
 v <- bind_rows(t21,t31) # 2155 * 2 = 4310
+
+#########################
+#missing values
+#########################
+v1 <- v #備份起來
+missing <- complete.cases(v1$Sales)  
+v1.rm <- v1[!missing, ] # candidate to be removed
+
+v.7.mean <- mean(v1$Sales, na.rm= T)  # 第7欄平均數
+v.7.mean <- mean(v1[,7], na.rm= T)  # 第7欄平均數
+
+na.rows <- is.na(v1[, 7])    # 第7欄位中，有遺漏值存在的資料
+v1[na.rows, 7] <- v.7.mean # 用平均數填補遺漏值
+
+#########################
+#subset arrange
+#########################
+w = subset(nw, Sales >=5000) # 
+w1 = subset(nw, Sales >=5000, select = EmployeeID) # 
+w2 = v %>% group_by(EmployeeID) %>% count() %>% 
+  arrange(desc(n))
+
+        
