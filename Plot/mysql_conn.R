@@ -1,3 +1,8 @@
+##########################################
+#Editor: Kuo-Liang Ou
+#Affililation: National Tsing Hua University ILST
+#To avoid re-install packages
+##########################################
 # Package names
 package_list <- c("ggplot2", "dplyr", "RMySQL")
 

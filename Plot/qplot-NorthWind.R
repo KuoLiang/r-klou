@@ -22,6 +22,10 @@ library(ggplot2)
 qplot(data=nw,x=EmployeeID)
 qplot(data=nw,x=EmployeeID,
       fill=Year)
+qplot(data=nw,x=EmployeeID,
+      fill=Year, facets = Year~.)
+qplot(data=nw,x=EmployeeID,
+      fill=Year, facets = Year~EmployeeID)
 ##########################################
 #x 為連續資料 ; y 為連續資料
 ##########################################
