@@ -69,5 +69,25 @@ s12 <- r %>% count(EmployeeID)
 #########################
 #mutate()
 #########################
-t1 <- mutate(q,Earn= Sales * (1-Discount))
-t2 <- select(t1,-Sales)
+t1 <- mutate(q,Earn= Sales * (1-Discount)) #q has been grouped
+t2 <- select(t1,-Sales) #all variables without Sales
+t3 <- select(t1,Sales)  #only EmployeeID and Sales
+
+t11 <- mutate(nw,Earn= Sales * (1-Discount)) #nw hasn't been grouped
+t21 <- select(t11,-Sales) #all variables without Sales
+t31 <- select(t11,Sales)  #only Sales
+
+#########################
+#combine variables
+#########################
+
+u <- bind_cols(t21,t31) # if you are sure the orders of two df
+#
+t2id <- rep(1:nrow(t2)) 
+t22 <- cbind(id=t2id,t2)
+t3id <- rep(1:nrow(t3)) 
+t32 <- cbind(id=t3id,t3)
+
+u1 <- left_join(t22,t32,by="id")
+u2 <- right_join(t22,t32,by="id")
+v <- bind_rows(t21,t31) # 2155 * 2 = 4310
