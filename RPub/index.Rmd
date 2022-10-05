@@ -1,7 +1,7 @@
 ---
 title: "大數據資料分析課程講義"
 author: "區國良（Kuo-Liang Ou）"
-date: "1/9/2022"
+date: "2022/1/9"
 output:
   html_document:
     toc: true
@@ -62,6 +62,8 @@ typeof(x)
 class(y)
 typeof(y)
 ```
+class 結果可視為R物件中較 high-level 有關 presentation 的描述
+typeof 結果可視為R物件中較 low-level 有關 memory storage 的描述 
 
 #### 字元 character
 #### 整數 integer
