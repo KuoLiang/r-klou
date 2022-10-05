@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type="text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -281,6 +285,18 @@ div.tocify {
 </div>
 <div id="資料型別" class="section level3">
 <h3>資料型別</h3>
+<p>資料型別的目的在於方便程式運算，同時確認資料解讀的方式，例如 「a」 這個字元，可以很容易被解讀為「字元」a；但如果程式中出現了 「1」 這個字，在解讀及運算時若是「字元1」，則以字元的方式呈現，不應作為運算的對象；若是「數字1」則可以進行運算，同時也可以作為字元呈現。 R 主要提供4種資料型別：numeric, character, date and logical 其中 numeric 包含了 integer, double 以及 complex 例如</p>
+<pre class="r"><code>x &lt;- 1L
+y &lt;- 1.1</code></pre>
+<p>另外 可用 class(x) 檢查變數 x 的類別 以及 typeof(x) 檢查變數 x 的型別</p>
+<pre class="r"><code>class(x)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>typeof(x)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>class(y)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>typeof(y)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
 <div id="字元-character" class="section level4">
 <h4>字元 character</h4>
 </div>
