@@ -37,12 +37,12 @@ library(ggplot2)
 c <-  ggplot(data=nw, aes(Sales))
 ##########################################
 c + geom_area(stat="bin")
-c + geom_area(stat="bin", binwidth=100)
+c + geom_area(stat="bin", binwidth=1000)
 c + geom_density()
 c + geom_dotplot()
-c + geom_dotplot(binwidth = 100)
+c + geom_dotplot(binwidth = 1000)
 c + geom_histogram()
-c + geom_histogram(binwidth = 100)
+c + geom_histogram(binwidth = 1000,color="blue")
 ##########################################
 #One Variable - discrete
 d <-  ggplot(data=nw, aes(EmployeeID))
