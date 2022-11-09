@@ -46,23 +46,25 @@ c + geom_histogram(binwidth = 1000,color="blue")
 ##########################################
 #One Variable - discrete
 d <-  ggplot(data=nw, aes(EmployeeID))
-d1 <-  ggplot(data=nw, aes(EmployeeID,fill=Year))
+d1 <-  ggplot(data=nw, aes(EmployeeID,fill=Year)) #fill用在實心
 ##########################################
 d + geom_bar() #default y = count
 d1 + geom_bar()
 d1 + geom_bar(position="stack")
 d1 + geom_bar(position="fill")
+d1 + geom_bar(position="dodge")
 d1 + geom_bar(position="dodge")+ coord_flip()
 
 ##########################################
 #Two Variables - Continuous X and Continuous Y
 e <- ggplot(data=nw, aes(x=Freight,y=Sales))
-e1 <-  ggplot(data=nw, aes(x=Freight,y=Sales,fill=Year,color=Year))
+e1 <-  ggplot(data=nw, aes(x=Freight,y=Sales,fill=Year,color=Year)) #fill用在實心；color 用在線條
 ##########################################
 e + geom_point()
 e + geom_point() + geom_smooth()
 e1+ geom_point() + geom_smooth()
 e1+ geom_quantile() 
+e1+ geom_point() + geom_quantile(quantiles = c(0.1, 0.5, 0.9),size=2,alpha=0.5) 
 
 ##########################################
 #Two Variables - Discrete X and Continuous Y
@@ -77,8 +79,8 @@ f1 + geom_bar(stat="summary", fun="mean",position = "fill") #normalized
 f1 + geom_boxplot()
 f1 + geom_violin()
 f2 + geom_violin()
-f2 + geom_violin() + ylim(0,1000)
-f2 + geom_violin() + ylim(0,1000) + coord_cartesian(ylim=c(0,500))
+f2 + geom_violin() + ylim(0,1000) #設定y 軸距離
+f2 + geom_violin() + ylim(0,1000) + coord_cartesian(ylim=c(0,500)) #格放
 
 ##########################################
 #Facet
@@ -86,11 +88,19 @@ u <- ggplot(data=nw, aes(x=Sales))
 ##########################################
 
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
-  facet_grid(EmployeeID~.)
+  facet_grid(EmployeeID~.) #y = EmployeeID
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
-  facet_grid(.~Year)
+  facet_grid(rows=vars(EmployeeID)) #y = EmployeeID
+
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
-  facet_grid(EmployeeID~Year)
+  facet_grid(.~Year)      #x= Year
+u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
+  facet_grid(cols=vars(Year))      #x= Year
+
+u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
+  facet_grid(EmployeeID~Year) #y = EmployeeID x= Year
+u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
+  facet_grid(rows=vars(EmployeeID),cols=vars(Year))      
 ##########################################
 
 library(dplyr)
