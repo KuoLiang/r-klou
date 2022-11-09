@@ -3,20 +3,29 @@
 #National Tsing Hua University ILST
 #Reference: ggplot2 cheat sheet
 ##########################################
+#dataset
+##########################################
+#from database
 source("mysql_conn.R") #connect to mysql
-
 nw <-  fetch(myquery_result, n=-1)  #read all the data from result
+#from local file
 #setwd("somewhere of your working directory")
+nw <-  read.csv("NWSales.csv")
+#from remote file
 #nw <-  read.csv("https://github.com/KuoLiang/r-klou/blob/f6cc7b13890bbedd42d9e5d4a7e684dafa239495/Plot/NWSales.csv")
-nw
+nw #showout the dataframe
+
 ##########################################
 #transform
 ##########################################
 nw$Year = factor(nw$Year)
 nw$EmployeeID = factor(nw$EmployeeID)
 nw$ShipCountry = factor(nw$ShipCountry)
-library(ggplot2)
 
+##########################################
+#packages
+install.packages("ggplot2")
+library(ggplot2)
 ##########################################
 #hints:
 #Aesthetic : x y shape, color, size
