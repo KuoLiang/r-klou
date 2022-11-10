@@ -1,3 +1,8 @@
+##########################################
+#Editor: Kuo-Liang Ou
+#Affililation: National Tsing Hua University ILST
+##########################################
+
 library(dplyr)
 source("../mysql_conn.R")
 nw <-  fetch(myquery_result, n=-1) 
