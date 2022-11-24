@@ -1,8 +1,14 @@
-library(datasets)
-str(iris)
-subset(iris, Species == "setosa" | Species =="versicolor")
-subset(iris, Species == "setosa" , Species =="versicolor")
-subset(iris, Species == "setosa" & Species =="versicolor")
+##########################################
+#Editor: Kuo-Liang Ou
+#National Tsing Hua University ILST
+##########################################
+
+library(datasets) #load built-in dataset
+str(iris)       #show structure
+
+subset(iris, Species == "setosa" | Species =="versicolor") # OR
+subset(iris, Species == "setosa" , Species =="versicolor") # AND
+subset(iris, Species == "setosa" & Species =="versicolor") # AND
 subset(iris, Species != "setosa" )[1:5,]
 
 summary(iris)
