@@ -74,3 +74,12 @@ CForestFit <- caret::train(Species ~ . ,data = iris,
                           trControl = ctrl)
 CForestFit
 ggplot(CForestFit)
+
+sample_index3 <- sample(1:nrow(iris), size = 10)
+sample_index3
+newcases <- iris[sample_index3,-5]
+newcases
+predicted <- predict(CForestFit, newcases, type="prob")
+predicted
+predicted <- predict(CForestFit, newcases, type="raw")
+predicted
