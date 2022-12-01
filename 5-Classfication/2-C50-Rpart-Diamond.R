@@ -13,11 +13,11 @@ library(rpart)
 library(rpart.plot)
 
 model1 <- rpart(color ~., data = sample_diamonds, method = 'class')
-rpart.plot(model1, extra = 100)
+rpart.plot(model1, extra = 100) #Display extra information at the nodes
 summary(model1)  
 
 model11 <- rpart(color ~ carat + cut, data = sample_diamonds, method = 'class')
-rpart.plot(model11, extra = 100)
+rpart.plot(model11, extra = 100) # try 106, 104, 100
 summary(model11)  
 
 #second method : C50 with regular expression
@@ -37,6 +37,8 @@ model2 <- C5.0(x=input, y=output, method = 'class')
 plot(model2) # ???? something wrong
 summary(model2)
 
+mod1 <- C5.0(Species ~ ., data = iris)
+plot(mod1)
 ##### prediction
 
 sample_index2 <- sample(1:nrow(diamonds), size = 10)
