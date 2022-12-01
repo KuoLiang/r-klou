@@ -62,12 +62,7 @@ RpartFit <- caret::train(color ~ . ,data = sample_diamonds,
                         trControl = ctrl)
 RpartFit
 ggplot(RpartFit)
-#########
-AdaBoostFit <- caret::train(Species ~ . ,data = iris, 
-                            method = "AdaBoost.M1", 
-                            trControl = ctrl)
-AdaBoostFit
-ggplot(AdaBoostFit)
+
 #########
 CForestFit <- caret::train(Species ~ . ,data = iris, 
                            method = "cforest", 
