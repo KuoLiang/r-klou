@@ -54,6 +54,9 @@ plot(model1, main="C5.0 Decision Tree - Unpruned, min=1")
 model2 <- C5.0(input, output, control = C5.0Control(noGlobalPruning = FALSE))
 plot(model2, main="C5.0 Decision Tree - Pruned")
 newcases <- iris[c(1:3,51:53,101:103),]
+#newcases2 = data.frame(Sepal.Length=c(1,2,3),Sepal.Width=c(2,3,4),
+#                       Petal.Length=c(3,4,5),Petal.Width=c(4,5,6),
+#                       Spaecies=c(NA,NA,NA)) #maka a new cases data frame
 newcases
 predicted <- predict(model1, newcases, type="class")
 predicted
