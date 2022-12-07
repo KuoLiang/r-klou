@@ -69,3 +69,5 @@ tune.model = tune(svm,
 # gamma 愈小，平面愈平滑
 plot(tune.model)
 summary(tune.model)
+
+#dummyVars
