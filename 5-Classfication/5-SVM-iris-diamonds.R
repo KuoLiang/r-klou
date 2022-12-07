@@ -1,10 +1,17 @@
 if(! require("e1071")) install.packages("e1071")
 library(e1071)
-data(iris)
 
 ## classification mode
-# default with factor response: 標準寫法
-model <- svm(Species ~ ., data = iris)
+# default with factor response: 正規寫法
+model <- svm(Species ~ ., data = iris,
+             kernel = "polynomial") 
+#kernel = linear,polynomial,radial,sigmoid
+
+summary(model)
+plot(model,iris,Petal.Length~Petal.Width)
+plot(model,iris,Petal.Length~Sepal.Width)
+plot(model,iris,Petal.Length~Sepal.Length)
+plot(model,iris,Sepal.Width~Sepal.Length)
 
 # alternatively the traditional interface: f(x)=y ；y為依變數；x為自變數
 x <- subset(iris, select = -Species)
@@ -13,11 +20,11 @@ y <- subset(iris, select = Species) #如此 y 為 nominal
 
 model <- svm(x, y)           #無法執行，因為不為factor vector
 model <- svm(x, y$Species)   #ok
+#############################################
+
+
+# test with training data
 sample_index=sample(nrow(x),10) #抽10個
-
-summary(model)
-
-# test with train data
 pred1 <- predict(model, x[sample_index,])  #列出預測結果
 # (same as:)
 pred2 <- fitted(model) #同上的功能,但用所有的樣本
@@ -42,7 +49,7 @@ library("mlbench")
 tune.model = tune(svm,
                   Species~.,
                   data=iris,
-                  kernel="radial", # RBF kernel function
+                  kernel="radial", 
                   range=list(cost=10^(-1:2), gamma=c(.5,1,2))# 調參數的最主要一行
 )
 plot(tune.model) #右方 error 愈小愈好（深色）
@@ -52,7 +59,9 @@ model2 <- svm(Species ~ ., data = iris,
 pred2 <- predict(model2, x, decision.values = TRUE) #列出機率
 table(pred2, y$Species) 
 
-#### try another dataset
+###########################
+#diaminds
+###########################
 library(ggplot2)
 data(diamonds)
 plot(diamonds$carat,diamonds$price)
@@ -62,7 +71,7 @@ sample_data = diamonds[sample_index,]
 tune.model = tune(svm,
                   color ~.,
                   data=sample_data,
-                  kernel="radial", # RBF kernel function
+                  kernel="radial", 
                   range=list(cost=c(1,10), gamma=c(0.1,1))
 ) #be careful of time consuming (it may cost 5 mins or more)
 # 調參數的最主要一行
@@ -94,7 +103,7 @@ sample_data = my_diamonds[sample_index,]
 tune.model = tune(svm,
                   color ~.,
                   data=sample_data,
-                  kernel="radial", # RBF kernel function
+                  kernel="radial", 
                   range=list(cost=c(1,10), gamma=c(0.1,1))
 ) #be careful of time consuming (it may cost 5 mins or more)
 plot(tune.model)
