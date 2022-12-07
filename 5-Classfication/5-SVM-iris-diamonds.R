@@ -63,7 +63,7 @@ tune.model = tune(svm,
                   data=sample_data,
                   kernel="radial", # RBF kernel function
                   range=list(cost=c(1,10), gamma=c(0.1,1))
-) #be careful of time consuming
+) #be careful of time consuming (it may cost 5 mins or more)
 # 調參數的最主要一行
 # cost 處罰系數,愈大時代表愈不能容忍誤判,會使用MARGIN變小,易overfitting
 # cost 愈小, margin 愈大
@@ -76,3 +76,27 @@ pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列
 table(pred_diamond,sample_data$color) 
 
 #dummyVars
+model_diamond <- svm(price ~ ., data = sample_data)
+pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
+table(pred_diamond,sample_data$price) #!!!!! 把價錢當factor ???
+
+install.packages("dummy")
+require(dummy) 
+dummy_diamonds <- dummy(diamonds[,-3]) #without color
+my_diamonds <- cbind(diamonds,dummy_diamonds)
+
+set.seed(2022)
+sample_index= sample(nrow(my_diamonds),size=10000)
+sample_data = my_diamonds[sample_index,]
+tune.model = tune(svm,
+                  color ~.,
+                  data=sample_data,
+                  kernel="radial", # RBF kernel function
+                  range=list(cost=c(1,10), gamma=c(0.1,1))
+) #be careful of time consuming (it may cost 5 mins or more)
+plot(tune.model)
+summary(tune.model)
+model_diamond <- svm(color ~ ., data = sample_data,cost = 10, gamma = 0.1 )
+pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
+table(pred_diamond,sample_data$color) 
+
