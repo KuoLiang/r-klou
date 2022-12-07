@@ -2,11 +2,9 @@
 #install.packages("class")
 #install.packages("nnet")
 library(neuralnet)
-library(class)
+library(dummy)
 library(nnet)
-#class.ind = dummy variables by nnet package
-#Generates a class indicator function from a given factor.
-iris_dummy = cbind(iris, class.ind(iris$Species))  
+iris_dummy = cbind(iris, dummy(iris))
 #增加三欄編碼，因為只能用數值作為class
 iris_dummy 
 set.seed(2020)
@@ -15,7 +13,7 @@ sample_index = sample(nrow(iris_dummy),sample_size) #取樣索引
 iris_train = iris_dummy[sample_index,]
 iris_test = iris_dummy[-sample_index,]
 #neuralnet(formula, data, hidden = 1, threshold = 0.01) 
-ann_formula = setosa + versicolor + virginica ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
+ann_formula = Species_setosa + Species_versicolor + Species_virginica ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
 #這裹不可用 ann_formula = Species ~ .
 #setosa 變成欄位了；versicolor and virginica 也是欄位
 #############################################

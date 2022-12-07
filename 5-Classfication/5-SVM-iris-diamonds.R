@@ -113,3 +113,4 @@ model_diamond <- svm(color ~ ., data = sample_data,
 pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
 table(pred_diamond,sample_data$color) 
 
+########
