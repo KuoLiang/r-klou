@@ -55,7 +55,7 @@ table(pred2, y$Species)
 library(ggplot2)
 data(diamonds)
 plot(diamonds$carat,diamonds$price)
-set.seed(2021)
+set.seed(2022)
 sample_index= sample(nrow(diamonds),size=10000)
 sample_data = diamonds[sample_index,]
 tune.model = tune(svm,
