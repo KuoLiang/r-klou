@@ -1,19 +1,18 @@
 if(! require("e1071")) install.packages("e1071")
 library(e1071)
 data(iris)
-#attach(iris) #search path
 
 ## classification mode
 # default with factor response: 標準寫法
 model <- svm(Species ~ ., data = iris)
 
-# alternatively the traditional interface: f(x)=y ；y1 y2為依變數；x為自變數
+# alternatively the traditional interface: f(x)=y ；y為依變數；x為自變數
 x <- subset(iris, select = -Species)
-y1 <- subset(iris, select = Species) #如此 y1 為 nominal
-y2 <- iris$Species #如此 y2 為 values, not data frame
+y <- subset(iris, select = Species) #如此 y 為 nominal
+#y <- iris$Species #如此 y2 為 vector, not data frame
 
-model <- svm(x, y1)  #無法執行，因為不為factor
-model <- svm(x, y2)  #ok
+model <- svm(x, y)           #無法執行，因為不為factor vector
+model <- svm(x, y$Species)   #ok
 sample_index=sample(nrow(x),10) #抽10個
 
 summary(model)
@@ -25,7 +24,7 @@ pred2 <- fitted(model) #同上的功能,但用所有的樣本
 
 # Check accuracy:
 table(pred1, iris[sample_index,5])  #table 列，欄
-table(pred2, y2)  #table 列，欄
+table(pred2, y$Species)  #table 列，欄
 
 # compute decision values and probabilities:#列出機率,可見兩兩比較的二分法
 pred11 <- predict(model, x[sample_index,], decision.values = TRUE) 
@@ -46,11 +45,11 @@ tune.model = tune(svm,
                   kernel="radial", # RBF kernel function
                   range=list(cost=10^(-1:2), gamma=c(.5,1,2))# 調參數的最主要一行
 )
-plot(tune.model)
+plot(tune.model) #右方 error 愈小愈好（深色）
 summary(tune.model) #cost = 1; gamma = 0.5 are the best parameters
-model <- svm(Species ~ ., data = iris,cost = 1, gamma = 0.5 )
-pred <- predict(model, x, decision.values = TRUE) #列出機率
-table(pred, y) 
+model2 <- svm(Species ~ ., data = iris,cost = 1, gamma = 0.5 )
+pred2 <- predict(model2, x, decision.values = TRUE) #列出機率
+table(pred2, y$Species) 
 
 #### try another dataset
 library(ggplot2)
@@ -60,7 +59,7 @@ set.seed(2021)
 sample_index= sample(nrow(diamonds),size=10000)
 sample_data = diamonds[sample_index,]
 tune.model = tune(svm,
-                  carat ~.,
+                  color ~.,
                   data=sample_data,
                   kernel="radial", # RBF kernel function
                   range=list(cost=c(1,10), gamma=c(0.1,1))
@@ -72,5 +71,8 @@ tune.model = tune(svm,
 # gamma 愈小，平面愈平滑
 plot(tune.model)
 summary(tune.model)
+model_diamond <- svm(color ~ ., data = sample_data,cost = 10, gamma = 0.1 )
+pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
+table(pred_diamond,sample_data$color) 
 
 #dummyVars
