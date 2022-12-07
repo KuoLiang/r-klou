@@ -47,7 +47,8 @@ tune.model = tune(svm,
 )
 plot(tune.model) #右方 error 愈小愈好（深色）
 summary(tune.model) #cost = 1; gamma = 0.5 are the best parameters
-model2 <- svm(Species ~ ., data = iris,cost = 1, gamma = 0.5 )
+model2 <- svm(Species ~ ., data = iris,
+              kernel="radial",cost = 1, gamma = 0.5 )
 pred2 <- predict(model2, x, decision.values = TRUE) #列出機率
 table(pred2, y$Species) 
 
@@ -71,12 +72,14 @@ tune.model = tune(svm,
 # gamma 愈小，平面愈平滑
 plot(tune.model)
 summary(tune.model)
-model_diamond <- svm(color ~ ., data = sample_data,cost = 10, gamma = 0.1 )
+model_diamond <- svm(color ~ ., data = sample_data,
+                     kernel="radial",cost = 10, gamma = 0.1 )
 pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
 table(pred_diamond,sample_data$color) 
 
 #dummyVars
-model_diamond <- svm(price ~ ., data = sample_data)
+model_diamond <- svm(price ~ ., data = sample_data,
+                     kernel="radial")
 pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
 table(pred_diamond,sample_data$price) #!!!!! 把價錢當factor ???
 
@@ -96,7 +99,8 @@ tune.model = tune(svm,
 ) #be careful of time consuming (it may cost 5 mins or more)
 plot(tune.model)
 summary(tune.model)
-model_diamond <- svm(color ~ ., data = sample_data,cost = 10, gamma = 0.1 )
+model_diamond <- svm(color ~ ., data = sample_data,
+                     kernel="radial",cost = 10, gamma = 0.1 )
 pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
 table(pred_diamond,sample_data$color) 
 
