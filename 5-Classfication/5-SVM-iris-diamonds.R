@@ -41,7 +41,10 @@ tune.model = tune(svm,
                   range=list(cost=10^(-1:2), gamma=c(.5,1,2))# 調參數的最主要一行
 )
 plot(tune.model)
-summary(tune.model)
+summary(tune.model) #cost = 1; gamma = 0.5 are the best parameters
+model <- svm(Species ~ ., data = iris,cost = 1, gamma = 0.5 )
+pred <- predict(model, x, decision.values = TRUE) #列出機率
+table(pred, y) 
 
 #### try another dataset
 library(ggplot2)
@@ -55,7 +58,7 @@ tune.model = tune(svm,
                   data=sample_data,
                   kernel="radial", # RBF kernel function
                   range=list(cost=c(1,10), gamma=c(0.1,1))
-)
+) #be careful of time consuming
 # 調參數的最主要一行
 # cost 處罰系數,愈大時代表愈不能容忍誤判,會使用MARGIN變小,易overfitting
 # cost 愈小, margin 愈大
