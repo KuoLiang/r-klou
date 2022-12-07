@@ -7,26 +7,32 @@ data(iris)
 # default with factor response: 標準寫法
 model <- svm(Species ~ ., data = iris)
 
-# alternatively the traditional interface: f(x)=y ；y為依變數；x為自變數
+# alternatively the traditional interface: f(x)=y ；y1 y2為依變數；x為自變數
 x <- subset(iris, select = -Species)
-y <- iris$Species
-model <- svm(x, y)  #同上的另一種寫法
+y1 <- subset(iris, select = Species) #如此 y1 為 nominal
+y2 <- iris$Species #如此 y2 為 values, not data frame
 
-print(model)
+model <- svm(x, y1)  #無法執行，因為不為factor
+model <- svm(x, y2)  #ok
+sample_index=sample(nrow(x),10) #抽10個
+
 summary(model)
 
 # test with train data
-pred <- predict(model, x)  #列出預測結果
+pred1 <- predict(model, x[sample_index,])  #列出預測結果
 # (same as:)
-pred <- fitted(model) #同上的功能
+pred2 <- fitted(model) #同上的功能,但用所有的樣本
 
 # Check accuracy:
-table(pred, y)  #table 列，欄
+table(pred1, iris[sample_index,5])  #table 列，欄
+table(pred2, y2)  #table 列，欄
 
-# compute decision values and probabilities:
-pred <- predict(model, x, decision.values = TRUE) #列出機率
-attr(pred, "decision.values")[1:4,]  #return a dataframe top 4
-attr(pred, "decision.values")  #all attributes
+# compute decision values and probabilities:#列出機率,可見兩兩比較的二分法
+pred11 <- predict(model, x[sample_index,], decision.values = TRUE) 
+pred21<- predict(model, x, decision.values = TRUE) 
+
+attr(pred11, "decision.values")[1:10,]  #return a data frame 
+attr(pred21, "decision.values")  #all attributes
 
 #### 調校參數
 
