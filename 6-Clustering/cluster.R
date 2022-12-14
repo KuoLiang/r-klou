@@ -1,6 +1,5 @@
-data("iris")
-
-max = ceiling(1*nrow(iris))
+max = ceiling(1*nrow(iris))       # 取樣最多 max 個 max may be 0.8 or 0.7
+set.seed(2022)
 sample_index = sample(1:nrow(iris),max)
 iris_sample = iris[sample_index,1:4]
 
