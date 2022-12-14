@@ -12,7 +12,7 @@ resultkm1
 resultkm1$cluster
 table(resultkm1$cluster,iris$Species)
 ### illustrate the SSE
-require(factoextra)
+install.packages("factoextra")
 library(factoextra)
 ### for iris
 fviz_nbclust(iris_sub, 
@@ -42,6 +42,7 @@ result_diad_cm3$cluster
 #EM clustering
 #Baysiean Information Criterion (BIC)
 #########################################
+install.packages("mclust")
 library(mclust)
 result_iris_mc =  Mclust(iris_sub)
 summary(result_iris_mc) # display the best model
