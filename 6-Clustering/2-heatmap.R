@@ -1,3 +1,7 @@
+##########################################
+#Editor: Kuo-Liang Ou
+#National Tsing Hua University ILST
+##########################################
 #矩陣 (matrix) 是二維資料物件
 #由列 (row) 與行 (column) 組成
 dist(c(1:10)) #try the dist function 10點一維空間距離
