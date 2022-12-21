@@ -2,6 +2,7 @@
 #install.packages("rgl")
 options(rgl.useNULL = TRUE)
 library(rgl)
+open3d()
 # This is to output a rgl plot in a rmarkdown document.
 # setupKnitr()
 
