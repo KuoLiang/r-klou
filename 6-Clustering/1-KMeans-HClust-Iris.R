@@ -18,12 +18,22 @@ points(k_result$centers[,c("Sepal.Length","Sepal.Width")],
 # hierarchical cluster
 
 iris_sample = iris[,1:4]
-h_result = hclust(dist(iris_sample),method="complete")
+h_result = hclust(dist(iris_sample),method="complete")  # distance matrix
+      # method = measure the distance between clusters
+      # see https://www.datacamp.com/tutorial/hierarchical-clustering-R
+#h_result = hclust(dist(iris_sample),method="single")
+#h_result = hclust(dist(iris_sample),method="average")
+#h_result = hclust(dist(iris_sample),method="centroid")
 h_result
-#method = single complete average centroid
+h_result$height # the value of the criterion associated with the clustering method 
+h_result$merge
+#method could be: single complete average centroid
+
 plot(h_result,labels=iris$Species)
-rect.hclust(cluster_result,k=3,border="blue")
-rect.hclust(cluster_result,k=6,border="red")
+
+#raw Rectangles Around Hierarchical Clusters
+rect.hclust(h_result,k=3,border="blue") #
+rect.hclust(h_result,k=6,border="red")
 ###
 
 
