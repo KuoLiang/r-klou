@@ -9,7 +9,7 @@ dist(cbind(c(1:10),c(1:10)),method="manhattan") # change the method
 dist(cbind(c(1:10),c(1:10)),method="euclidean")  #10點二維空間距離
 dist(cbind(c(1:10),c(1:10),c(1:10)),method="euclidean") #10點三維空間距離
 
-irisMatrix = as.matrix(dist(iris[,1:4])) #put the distances into Matirx
+irisMatrix = as.matrix(dist(iris[,1:4])) #put the distances into Matrix
 irisMatrix
 heatmap(irisMatrix)  #因為 heapmap 只接受相同資料型態之二維 matrix 
 
@@ -26,6 +26,7 @@ pheatmap(irisMatrix,kmeans_k = 4,terrain.colors(100))
 pheatmap(irisMatrix,kmeans_k = 4,topo.colors(100))
 pheatmap(irisMatrix,kmeans_k = 4,rainbow(100))
 #######
+# see https://r-graph-gallery.com/3d.html
 
 install.packages("scatterplot3d")
 library("scatterplot3d")
