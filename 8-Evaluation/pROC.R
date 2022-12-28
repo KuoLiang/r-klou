@@ -3,6 +3,7 @@ library(pROC)
 library(e1071)
 result_radial_1<-svm(Species~.,iris,
                      kernel="radial",gamma=10^-1)
+#gamma值如果愈小資料點影響的範圍愈大
 
 result_radial_2<-svm(Species~.,iris,
                      kernel="radial",gamma=10^-2)
@@ -10,7 +11,7 @@ result_radial_2<-svm(Species~.,iris,
 result_radial_3<-svm(Species~.,iris,
                      kernel="radial",gamma=10^-3)
 
-#將 Specise 轉為 123代號
+#將預測結果 Specise 轉為 123代號
 pre_1<-as.numeric(predict(result_radial_1,iris))
 pre_2<-as.numeric(predict(result_radial_2,iris))
 pre_3<-as.numeric(predict(result_radial_3,iris))
