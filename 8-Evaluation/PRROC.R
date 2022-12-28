@@ -23,11 +23,30 @@ roc = roc.curve(C1, C2, curve = TRUE) #curve must be T
 roc
 plot(roc)
 
+### C1 C3 ROC and threshold
+roc = roc.curve(C1, C3, curve = TRUE) #curve must be T
+roc
+plot(roc)
+
+### C2 C3 ROC and threshold
+roc = roc.curve(C2, C3, curve = TRUE) #curve must be T
+roc
+plot(roc)
+
 ### PR Curve - Precision-Recall
 pr = pr.curve(C1, C2,curve = TRUE) #C1 positive C2 negative
 pr
 plot(pr)
 
+### PR Curve - Precision-Recall
+pr = pr.curve(C1, C3,curve = TRUE) #C1 positive C3 negative
+pr
+plot(pr)
+
+### PR Curve - Precision-Recall
+pr = pr.curve(C2, C3,curve = TRUE) #C2 positive C3 negative
+pr
+plot(pr)
 #############################################################
 #以上圖形中之顏色為分割點 threshold
 #############################################################
