@@ -22,7 +22,6 @@ boxplot(C1,C2,C3)
 roc = roc.curve(C1, C2, curve = TRUE) #curve must be T
 roc
 plot(roc)
-smooth(roc)
 
 ### PR Curve - Precision-Recall
 pr = pr.curve(C1, C2,curve = TRUE) #C1 positive C2 negative
