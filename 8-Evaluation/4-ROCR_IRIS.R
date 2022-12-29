@@ -1,3 +1,7 @@
+##########################################
+#Editor: Kuo-Liang Ou
+#National Tsing Hua University ILST
+##########################################
 install.packages("ROCR")
 library(ROCR)
 data(ROCR.simple)
