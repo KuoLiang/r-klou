@@ -6,16 +6,15 @@ setwd("/Volumes/8T/GitHub/r-klou/13-OpenAI/")
 gpt3_authenticate("access_key.txt")
 gpt3_test_completion()
 
-###
-my_prompts = data.frame('prompts' = 
-                          c('Complete this sentence: universities are'
-                            , 'Write a poem about music:'
-                            , 'Which colour is better and why? Red or blue?')
-                        ,'prompt_id' = c(LETTERS[1:3]))
+sample_string = "London is one of the most liveable cities in the world. The city is always full of energy and people" 
+gpt3_single_embedding(input = sample_string)
 
-example_2 = gpt3_completions(prompt_var = my_prompts$prompts
-                             , id_var = my_prompts$prompt_id
-                             , param_model = 'text-curie-001'
-                             , param_max_tokens = 100
-                             , param_n = 5
-                             , param_temperature = 0.4)
+gpt3_single_embedding(input = sample_string
+                      , model = 'text-similarity-curie-001')
+
+gpt3_single_completion(prompt_input = 'How old are you?')
+
+gpt3_single_completion(prompt_input = "Write a research idea about using text data to understand human behaviou"
+       , temperature = 0.8
+       , n = 10
+       , max_tokens = 150)
