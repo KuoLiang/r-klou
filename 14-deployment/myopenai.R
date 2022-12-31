@@ -1,27 +1,11 @@
-#https://gist.github.com/jlomako
+library(devtools)
+devtools::install_github("ben-aaron188/rgpt3")
+library(rgpt3)
+setwd("/Users/klou/Documents/GitHub/")
+gpt3_authenticate("access_key.txt")
+c <- gpt3_single_completion(prompt_input = '說個冷笑話吧')
+c[[1]]$gpt3
 
-library(reticulate)
-# create python env
-conda_create(envname = "gpt3", packages = "openai", python_version = "3.10")
-use_condaenv("gpt3")
-
-# import openai
-openai <- import("openai")
-
-# read api key from file
-openai$api_key <- scan("access_key.txt", what="character", sep=NULL)
-
-myprompt="說一個冷笑話吧"
-# set parameters
-response <- openai$Completion$create(
-  model = "text-davinci-003", # 
-  prompt = myprompt,
-  temperature = 0.9, # randomness, the higher the weirder
-  max_tokens = 100L, # needs integer
-  top_p=1,
-  frequency_penalty=0,
-  presence_penalty=0
-)
 
 # get response
 #cat(response$choices[[1]]$text)
@@ -29,5 +13,5 @@ response <- openai$Completion$create(
 #* @param msg The message to echo
 #* @get /echo
 function(msg="") {
-  list(msg = paste0("The message is: '", msg, "'"))
+  list(msg = paste0("The message is: '", c[[1]]$gpt3, "'"))
 }
