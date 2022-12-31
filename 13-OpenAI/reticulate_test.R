@@ -11,7 +11,7 @@ openai <- import("openai")
 # read api key from file
 openai$api_key <- scan("access_key.txt", what="character", sep=NULL)
 
-myprompt="寫一封情書"
+myprompt="說一個冷笑話吧"
 # set parameters
 response <- openai$Completion$create(
   model = "text-davinci-003", # 
@@ -24,4 +24,4 @@ response <- openai$Completion$create(
 )
 
 # get response
-cat(response$choices[[1]]$text)
+#cat(response$choices[[1]]$text)
