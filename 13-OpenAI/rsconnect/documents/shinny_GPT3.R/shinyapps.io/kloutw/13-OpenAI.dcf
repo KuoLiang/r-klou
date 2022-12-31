@@ -1,0 +1,14 @@
+name: 13-OpenAI
+title: 13-OpenAI
+username:
+account: kloutw
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7960204
+bundleId: 6685889
+url: https://kloutw.shinyapps.io/13-OpenAI/
+when: 1672486834.96014
+lastSyncTime: 1672486834.96016
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|access_key.txt|gpt3-test.R|reticulate_test.R|rgpt3_0.3.1.pdf
