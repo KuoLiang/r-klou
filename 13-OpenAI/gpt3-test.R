@@ -2,7 +2,7 @@ install.packages("devtools")
 library(devtools)
 devtools::install_github("ben-aaron188/rgpt3")
 library(rgpt3)
-setwd("/Users/klou/Documents/GitHub/r-klou/13-OpenAI/")
+setwd("/somewhere/13-OpenAI/")
 gpt3_authenticate("access_key.txt")
 a <- gpt3_test_completion()
 
