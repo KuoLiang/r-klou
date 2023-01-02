@@ -5,23 +5,16 @@ n=NTUSD$negative_cht
 p
 n
 class(n)
-p["一帆風順"]
+p[100]
 
 a=0
 for(i in 1:length(p))
-{ if(p[i]=="和好")
+{ if(p[i]=="很棒")
   {
     a=1
     break
   }
 }
+a
 
 
-b=0
-for(i in 1:length(n))
-{ if(n[i]=="一連串")
-{
-  b=1
-  break
-}
-}

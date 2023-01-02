@@ -2,7 +2,6 @@ packages = c("dplyr", "tidytext", "jiebaR", "gutenbergr", "stringr", "wordcloud2
 existing = as.character(installed.packages()[,1])
 for(pkg in packages[!(packages %in% existing)]) install.packages(pkg)
 
-install.packages("tidytext")
 library(tidytext)
 library(janeaustenr)
 library(dplyr)
@@ -20,10 +19,11 @@ original_books
 #=========
 text <- c("床前明月光，",
           "疑是地上霜。",
-          "举头望明月，",
-          "低头思故乡。")
+          "舉頭望明月，",
+          "低頭思故鄉。")
 text
+text <- c("I","You","She")
 library(tidytext)
 tidy_books <- original_books %>%
-    unnest_tokens(word, text)
+    unnest_tokens(word, text) #Split a column into tokens
 tidy_books
