@@ -17,7 +17,7 @@ e/3
 d = a+c
 d
 d = a/c
-d = a/e
+d = a/e #warning
 #####
 c[1]
 c[c(1,3)]
