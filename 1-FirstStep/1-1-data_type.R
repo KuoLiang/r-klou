@@ -10,16 +10,16 @@ typeof(a)
 b = 10.1
 typeof(b)
 b = sqrt(b)
-#complex
 
+#complex
 c = 1 + 2i
 typeof(c)
 
 #character
-
 d = "klou"
 typeof(d)
 paste(d,d)
+paste(d,d,d)
 paste("hello",d)
 
 #logical
