@@ -1,4 +1,8 @@
+#前情提要：關於 vector 基礎操作
 #建立變數x ，為vector 物件，內容為五個數值
+#可使用hotkey 輸入 <-  
+#Windows 使用 Alt -  
+#Mac 使用 Option - 
 
 x <- c(10.4, 5.6, 3.1, 6.4, 21.7)
 x = c(10.4, 5.6, 3.1, 6.4, 21.7)
@@ -7,16 +11,17 @@ y = 1/x   #一次處理vector中所有物件
 y
 y <- c(x, 0, x) #建立vector y,內容為 x0x
 y
-labs <- paste(c("X","Y","Z"), 100:200, sep="_")
-labs
-x = c("hello","world") #x 為 char vector
+z <- paste("X",1)
+z <- paste("Y",c(1:100), sep="") #可用於創造有特殊字首之學號
+z <- paste(c("X","Y","Z"), 100:200, sep="_") #兩個向量元素配對時使用 _ 相連
+z
+
 
 ####
-
-y <- x[!is.na(x)] #把不是 NA的內容複製為 y
-y <- c(x, NA, x)
+x = c("hello","world",NULL) #x 為 char vector
+y <- x[!is.na(x)] #把不是 NULL 的內容複製為 y
 y
-z <- y[!is.na(y)]
+
 w = y[3]
 w = y[0]
 w = y[1:3]
@@ -24,11 +29,12 @@ x[1:10]
 w=c("x","y")[rep(c(1,2,2,1,1,2,1,2), times=4)]
 w
 ###
-
-
+#向量基本操作
 x=c(1:10)
 y=x[-(2:5)]
 y=x[-c(2,3,6,7)]
+
+
 ###
 library(datasets)
 str(iris)
@@ -73,10 +79,12 @@ beanplot(xiris,
          border = "#000000")
 
 ##
+#觀察各維度之間的關聯系數
 
 corr <- cor(iris[,1:4])
 round(corr,3)
 corr <- cor(iris[,1:4])
 corr
 
+#捉對比較以散布圖顯示，限numeric
 pairs(iris[,1:4])
