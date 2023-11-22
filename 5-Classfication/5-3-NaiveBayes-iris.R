@@ -1,15 +1,34 @@
+#install.packages('e1071')
+#install.packages('caret')
+library(caret)
 library(e1071 )
 set.seed(2020)
+
 train.index = sample(x=1:nrow(iris), size=ceiling(0.8*nrow(iris) )) #抽樣8/2
-train_set = iris[train.index,]
-test_set = iris[-train.index,]
-NBModel=naiveBayes(Species ~., data=train_set)
+train_set = iris[train.index,]  #retrieve the training set
+test_set = iris[-train.index,]  #retrieve the test set
+
+NBModel=naiveBayes(Species ~., data=train_set)  #build the model
+NBModel                                         #show the model
+
+result=predict(NBModel,test_set)                #prediction
+result
+summary(result)
+table(test_set$Species,result)
+conf <- confusionMatrix(data=result, reference = test_set$Species)
+conf
+### try the diamonds
+
+library(ggplot2)
+train.index = sample(x=1:nrow(diamonds), size=ceiling(0.8*nrow(diamonds) )) #抽樣8/2
+train_set = diamonds[train.index,]
+test_set = diamonds[-train.index,]
+NBModel=naiveBayes(color ~., data=train_set)
 NBModel
 
 result=predict(NBModel,test_set)
 result
-
-###
+summary(result)
 
 library(e1071)
 data(iris)
