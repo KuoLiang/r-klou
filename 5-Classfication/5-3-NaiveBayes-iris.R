@@ -30,6 +30,9 @@ result=predict(NBModel,test_set)
 result
 summary(result)
 
+
+#SVM
+
 library(e1071)
 data(iris)
 x <- subset(iris, select = -Species)
