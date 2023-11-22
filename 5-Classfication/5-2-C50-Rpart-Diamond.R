@@ -6,7 +6,7 @@ set.seed(2022) #固定的亂數
 sample_index <- sample(1:nrow(diamonds), size = 1000)
 sample_diamonds <- diamonds[sample_index,]
 
-#first method : rpart with regular expression
+#first method : rpart with regular expression (based on Gini index)
 install.packages("rpart")
 install.packages("rpart.plot")
 library(rpart)
