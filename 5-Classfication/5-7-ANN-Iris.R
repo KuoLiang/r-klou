@@ -8,7 +8,7 @@ iris_dummy = cbind(iris, dummy(iris))
 #增加三欄編碼，因為只能用數值作為class
 iris_dummy 
 set.seed(2020)
-sample_size = 0.8 * nrow(iris_dummy)   #80% 是多少呢？
+sample_size = 0.8 * nrow(iris_dummy)   
 sample_index = sample(nrow(iris_dummy),sample_size) #取樣索引
 iris_train = iris_dummy[sample_index,]
 iris_test = iris_dummy[-sample_index,]
