@@ -38,7 +38,7 @@ output <- as.factor(output)
 model2 <- C5.0(x=input, y=output, method = 'class')
 
 #plot
-plot(model2, subtree = 3) # ???? something wrong
+#plot(model2, subtree = 0) # ???? something wrong
 
 summary(model2)
 
