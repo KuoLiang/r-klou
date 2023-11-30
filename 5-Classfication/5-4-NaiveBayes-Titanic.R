@@ -2,7 +2,7 @@ if(!require("e1071")) install.packages("e1071")
 library(e1071)
 ?naiveBayes 
 
-data(“Titanic”)
+data("Titanic")
 
 Titanic_df=as.data.frame(Titanic)
 
