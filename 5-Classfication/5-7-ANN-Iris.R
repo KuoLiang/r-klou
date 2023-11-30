@@ -4,7 +4,7 @@
 library(neuralnet)
 library(dummy)
 library(nnet)
-iris_dummy = cbind(iris, dummy(iris))
+iris_dummy = cbind(iris, dummy(iris,int=T)) #強迫轉為int
 #增加三欄編碼，因為只能用數值作為class
 iris_dummy 
 set.seed(2020)
