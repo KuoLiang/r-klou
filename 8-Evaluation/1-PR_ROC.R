@@ -24,7 +24,7 @@ summary(C3)
 ### 觀察C1C2C3的分布
 boxplot(C1,C2,C3)
 
-### C1 C2 ROC and threshold
+### C1 C2 ROC and threshold C1=postive score C2=negative score
 #Sensitividy = TPR
 roc_12 = roc.curve(C1, C2, curve = TRUE) #curve must be T
 roc_12
