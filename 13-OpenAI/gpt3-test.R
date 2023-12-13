@@ -36,6 +36,8 @@ cosine(b,b_klou)
 
 cosine(b_klouc,b_klou) 
 
+all_sentences <- cbind(b,b11,b12,b_klou,b_klouc)
+cosine(all_sentences)
 #################################################
 
 vec1 = c( 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
