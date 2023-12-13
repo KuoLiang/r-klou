@@ -8,7 +8,10 @@ a <- gpt3_test_completion()
 
 sample_string = "London is one of the most liveable cities in the world. The city is always full of energy and people"
 b <- gpt3_single_embedding(input = sample_string)
-b[[1]]$gpt3
+b
+data("travel_blog_data")
+b1 <- gpt3_embeddings(input_var = travel_blog_data$gpt3)
+dim(b1)
 
 c <- gpt3_single_completion(prompt_input = '說個冷笑話吧')
 c[[1]]$gpt3
