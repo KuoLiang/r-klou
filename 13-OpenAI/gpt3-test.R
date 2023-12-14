@@ -2,6 +2,7 @@
 library(devtools)
 devtools::install_github("ben-aaron188/rgpt3")
 library(rgpt3)
+install.packages("lsa")
 library(lsa)
 setwd("/Users/klou/Documents/GitHub/")
 gpt3_authenticate("access_key.txt")
