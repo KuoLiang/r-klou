@@ -1,3 +1,12 @@
+my_ts <- ts(1:100, start=2000) #由2000年開始100個資料
+my_ts
+your_ts <- ts(1:100, start=c(2000,10),frequency=12)#每月
+your_ts
+his_ts <- ts(1:100, start=c(2000,10),frequency=4)# 每季
+his_ts
+her_ts <- ts(1:100, start=decimal_date(ymd("2000-01-01")),
+             frequency=7)#七天一數值，最後第100個為 2014第二週
+her_ts
 #Weekly data of COVID-19 positive cases from
 # 22 January, 2020 to 15 April, 2020
 pCases <- c(580, 7813, 28266, 59287,
