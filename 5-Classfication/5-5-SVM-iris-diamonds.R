@@ -15,7 +15,7 @@ plot(model,iris,Sepal.Width~Sepal.Length)
 
 # alternatively the traditional interface: f(x)=y ；y為依變數；x為自變數
 x <- subset(iris, select = -Species)
-y <- subset(iris, select = Species) #如此 y 為 nominal
+y <- subset(iris, select = Species) #如此 y 為 data frame
 #y <- iris$Species #如此 y2 為 vector, not data frame
 
 model <- svm(x, y)           #無法執行，因為不為factor vector
