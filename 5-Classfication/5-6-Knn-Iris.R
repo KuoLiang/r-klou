@@ -45,3 +45,10 @@ knnFit <- caret::train(Species ~ . ,data = iris, method = "knn",
 #Output of kNN fit
 knnFit
 plot(knnFit)
+
+#################
+#setwd("/Users/klou/Documents/GitHub/r-klou/5-Classfication")
+source("mysql_conn.R") #connect to mysql
+dp <-  fetch(myquery_result, n=-1)  #read all the data from result
+dp
+##########################################
