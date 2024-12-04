@@ -25,9 +25,11 @@ model <- svm(x, y$Species)   #ok
 
 # test with training data
 sample_index=sample(nrow(x),10) #抽10個
-pred1 <- predict(model, x[sample_index,])  #列出預測結果
+pred1 <- predict(model, x[sample_index,])  #列出預測結果 using test set
+pred1
 # (same as:)
-pred2 <- fitted(model) #同上的功能,但用所有的樣本
+pred2 <- fitted(model) #同上的功能,但用原有的樣本 using training set
+pred2
 
 # Check accuracy:
 table(pred1, iris[sample_index,5])  #table 列，欄
@@ -55,10 +57,11 @@ tune.model = tune(svm,
 plot(tune.model) #右方 error 愈小愈好（深色）
 summary(tune.model) #cost = 1; gamma = 0.5 are the best parameters
 model2 <- svm(Species ~ ., data = iris,
-              kernel="radial",cost = 1, gamma = 0.5 )
+              kernel="polynomial",cost = 1, gamma = 0.5 )
 pred23 <- predict(model2, x, decision.values = TRUE) #列出機率
 table(pred23, y$Species) #tuned prediction
 table(pred21, y$Species) #previous prediction
+
 
 ###########################
 #diaminds
