@@ -45,7 +45,7 @@ attr(pred21, "decision.values")  #all attributes
 if(!require("mlbench")) install.packages("mlbench")
 library("mlbench")
 #gamma = how far the influence of s single training example reaches
-
+#cost = 懲罰值
 tune.model = tune(svm,
                   Species~.,
                   data=iris,
@@ -56,8 +56,9 @@ plot(tune.model) #右方 error 愈小愈好（深色）
 summary(tune.model) #cost = 1; gamma = 0.5 are the best parameters
 model2 <- svm(Species ~ ., data = iris,
               kernel="radial",cost = 1, gamma = 0.5 )
-pred2 <- predict(model2, x, decision.values = TRUE) #列出機率
-table(pred2, y$Species) 
+pred23 <- predict(model2, x, decision.values = TRUE) #列出機率
+table(pred23, y$Species) #tuned prediction
+table(pred21, y$Species) #previous prediction
 
 ###########################
 #diaminds
