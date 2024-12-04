@@ -40,9 +40,7 @@ install.packages("caret")
 ctrl <- caret::trainControl(method="repeatedcv",repeats = 10) 
 #repeated k-fold cross-validation 
 knnFit <- caret::train(Species ~ . ,data = iris, method = "knn", 
-                       trControl = ctrl, 
-                       preProcess = c("center","scale"),  #replace missing value by mean and sd
-                       tuneLength = 20)
+                       trControl = ctrl) #using the ctrl above
 
 #Output of kNN fit
 knnFit
