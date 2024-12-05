@@ -40,10 +40,15 @@ install.packages("caret")
 ctrl <- caret::trainControl(method="repeatedcv",repeats = 10) 
 #repeated k-fold cross-validation 
 knnFit <- caret::train(Species ~ . ,data = iris, method = "knn", 
-                       trControl = ctrl, 
-                       preProcess = c("center","scale"),  #replace missing value by mean and sd
-                       tuneLength = 20)
+                       trControl = ctrl) #using the ctrl above
 
 #Output of kNN fit
 knnFit
 plot(knnFit)
+
+#################
+#setwd("/Users/klou/Documents/GitHub/r-klou/5-Classfication")
+source("mysql_conn.R") #connect to mysql
+dp <-  fetch(myquery_result, n=-1)  #read all the data from result
+dp
+##########################################
