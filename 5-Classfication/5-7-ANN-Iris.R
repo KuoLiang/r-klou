@@ -2,6 +2,7 @@
 #install.packages("dummy")
 library(neuralnet)
 library(dummy)
+library(dplyr)
 iris_dummy = cbind(iris, dummy(iris,int=T)) #強迫轉為int
 #增加三欄編碼，因為只能用數值作為class
 iris_dummy 
@@ -24,15 +25,8 @@ model1 #show out the nn information
 result_pre=predict(model1, iris_test) #predict the test data
 result_pre #prediction result
 
-
-model2= neuralnet(formula = ann_formula, data=iris_train, hidden=2) #node of hidden layer = 2
-plot(model2)
-model2
-result_pre2=predict(model2, iris_test)
-result_pre2
-###
 #
-result_pre=round(result_pre)#四捨五入 ,也可用別的閥值
+result_pre=round(result_pre)#四捨五入 
 pred.df = as.data.frame(result_pre) 
 pred.df$Species =""
 pred.df
@@ -42,6 +36,22 @@ for(i in 1:nrow(pred.df)){
   if(pred.df[i, 3]==1){ pred.df[i, "Species"] = "Virginica"}
 }
 pred.df # you may find out some empty results
+####
+model2= neuralnet(formula = ann_formula, data=iris_train, hidden=2) #node of hidden layer = 2
+plot(model2)
+model2
+result_pre2=predict(model2, iris_test)
+pred <- result_pre2
+###
+
+labels <- c("setosa", "versicolor", "virginca")
+prediction_label <- data.frame(max.col(result_pre2)) %>%     
+mutate(result_pre2=labels[max.col.result_pre2.]) %>%
+select(2) %>%
+unlist()
+
+table(iris_test$Species, prediction_label)
+
 #######################
 #tunning the best parameter
 #######################
@@ -63,15 +73,13 @@ model_neu_final$result.matrix
 result_final=predict(model_neu_final, iris_test)
 result_final
 #
-result_final=round(result_final)
-pred.df = as.data.frame(result_final)
-pred.df$Species =""
-pred.df
-for(i in 1:nrow(pred.df)){
-    if(pred.df[i, 1]==1){ pred.df[i, "Species"] = "Setosa"}
-    if(pred.df[i, 2]==1){ pred.df[i, "Species"] = "Versicolor"}
-    if(pred.df[i, 3]==1){ pred.df[i, "Species"] = "Virginica"}
-}
-pred.df #much better
+
+labels <- c("setosa", "versicolor", "virginca")
+prediction_label <- data.frame(max.col(result_final)) %>%     
+mutate(result_pre2=labels[max.col.result_final.]) %>%
+select(2) %>%
+unlist()
+
+table(iris_test$Species, prediction_label)
 #########
 
