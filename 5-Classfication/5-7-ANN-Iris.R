@@ -36,12 +36,13 @@ for(i in 1:nrow(pred.df)){
   if(pred.df[i, 3]==1){ pred.df[i, "Species"] = "Virginica"}
 }
 pred.df # you may find out some empty results
+table(iris_test$Species, pred.df$Species) #some troubles
 ####
 model2= neuralnet(formula = ann_formula, data=iris_train, hidden=2) #node of hidden layer = 2
 plot(model2)
 model2
 result_pre2=predict(model2, iris_test)
-pred <- result_pre2
+
 ###
 
 labels <- c("setosa", "versicolor", "virginca")
@@ -62,21 +63,21 @@ best_model = caret::train(form=ann_formula, data=iris_train, method="neuralnet",
                 tuneGrid = expand.grid(.layer1=c(1:3), .layer2=c(0:3), .layer3=c(0:3)), 
             #   tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0)),               
                learningrate = 0.01,  # learning rate
-               threshold = 0.1,     # partial derivatives of the error function, a stopping criteria
+               threshold = 0.01,     # partial derivatives of the error function, a stopping criteria
                stepmax = 5e5         # 最大的ieration數 = 500000(5*10^5)
 )
 best_model
 plot(best_model)
-model_neu_final= neuralnet(formula = ann_formula, data=iris_train, hidden=c(2,1,1))
-plot(model_neu_final)
-model_neu_final$result.matrix
-result_final=predict(model_neu_final, iris_test)
+best_model= neuralnet(formula = ann_formula, data=iris_train, hidden=c(1,1,3))
+plot(best_model)
+best_model$result.matrix
+result_final=predict(best_model, iris_test)
 result_final
 #
 
 labels <- c("setosa", "versicolor", "virginca")
 prediction_label <- data.frame(max.col(result_final)) %>%     
-mutate(result_pre2=labels[max.col.result_final.]) %>%
+mutate(result_final=labels[max.col.result_final.]) %>%
 select(2) %>%
 unlist()
 
