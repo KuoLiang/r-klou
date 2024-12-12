@@ -1,9 +1,7 @@
 #install.packages("neuralnet")
-#install.packages("class")
-#install.packages("nnet")
+#install.packages("dummy")
 library(neuralnet)
 library(dummy)
-library(nnet)
 iris_dummy = cbind(iris, dummy(iris,int=T)) #強迫轉為int
 #增加三欄編碼，因為只能用數值作為class
 iris_dummy 
@@ -14,7 +12,7 @@ iris_train = iris_dummy[sample_index,]
 iris_test = iris_dummy[-sample_index,]
 #neuralnet(formula, data, hidden = 1, threshold = 0.01) 
 ann_formula = Species_setosa + Species_versicolor + Species_virginica ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
-#這裹不可用 ann_formula = Species ~ .
+ann_formula = Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
 #setosa 變成欄位了；versicolor and virginica 也是欄位
 #############################################
 #ANN
