@@ -45,7 +45,7 @@ result_pre2=predict(model2, iris_test)
 
 ###
 
-labels <- c("setosa", "versicolor", "virginca")
+labels <- c("setosa", "versicolor", "virginica")
 prediction_label <- data.frame(max.col(result_pre2)) %>%     
 mutate(result_pre2=labels[max.col.result_pre2.]) %>%
 select(2) %>%

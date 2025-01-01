@@ -16,7 +16,7 @@ library("RMySQL")
 myquery_string <-
   "SELECT * from dp002_exam"
 
-mysqlconnection <-  dbConnect(MySQL(), user = 'student', password = 's?P%3p7DeGw5H#HM', dbname = 'edu113' ,host = '10.8.0.1')
+mysqlconnection <-  dbConnect(MySQL(), user = 'edu113', password = 'k+Y:c8w8v=Q5', dbname = 'edu113' ,host = '10.8.0.1')
 dbListTables(mysqlconnection)
 
 myquery_result <-  dbSendQuery(mysqlconnection, myquery_string)
