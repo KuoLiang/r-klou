@@ -2,9 +2,19 @@
 #Editor: Kuo-Liang Ou
 #National Tsing Hua University ILST
 ##########################################
-#setwd("somewhere your csv file located")
+#setwd("somewhere your csv file located") 
+#set the working directory
 nw <-  read.csv("NWSales.csv")
-library(dplyr)
+
+#or you can import the NWSales.csv as the nw obejct
+
+install.packages("dplyr") #install the missing package
+library(dplyr) #call the specific packages in to memory
+
+if (!require("dplyr")) install.packages("dplyr")
+#check the reauired packages, if not, install at once only
+#the require function will reture true or false 
+
 #Comment for multiple lines
 #Ctrl + Shift + C (Windows/Linux) or Command + Shift + C (Mac).
 
