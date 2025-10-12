@@ -14,6 +14,12 @@ library(dplyr) #call the specific packages in to memory
 if (!require("dplyr")) install.packages("dplyr")
 #check the reauired packages, if not, install at once only
 #the require function will reture true or false 
+# filter()	篩選
+# select()	選擇變數
+# mutate()	新增衍生變數
+# arrange()	排序
+# summarise()	聚合變數
+# group_by()	分組，常搭配 summarise() 
 
 #Comment for multiple lines
 #Ctrl + Shift + C (Windows/Linux) or Command + Shift + C (Mac).
@@ -54,13 +60,16 @@ p <- nw %>% filter(Sales >= mean(Sales))
 a <- group_by(nw,EmployeeID) #nothing happened
 
 b <- filter(a,Sales >= mean(Sales))
-b <- filter(group_by(nw,EmployeeID),Sales >= mean(Sales)) #the same
+
 
 #########################
-#filter() 
+#pipe lines, the %>% at the end of each line
 #########################
-q <- nw %>% group_by(EmployeeID) 
-q1 <- q %>% filter(Sales >= mean(Sales))
+q <- nw %>% 
+  group_by(EmployeeID) %>% 
+  filter(Sales >= mean(Sales)) %>% 
+  summarise(mean(Sales)) # put the nw into group_by function
+
 
 r <- nw %>% group_by(EmployeeID,ShipCountry) #group by two factors
 r1 <- r %>% filter(Sales >= mean(Sales))  
