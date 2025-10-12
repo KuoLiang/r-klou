@@ -5,6 +5,14 @@
 #setwd("somewhere your csv file located")
 nw <-  read.csv("NWSales.csv")
 library(dplyr)
+#Comment for multiple lines
+#Ctrl + Shift + C (Windows/Linux) or Command + Shift + C (Mac).
+
+# SELECT o.EmployeeID, YEAR(o.OrderDate), o.ShipCountry,
+# od.UnitPrice*od.Quantity as Sales, od.Discount, o.Freight
+# FROM `order_details` as od, orders as o
+# WHERE od.OrderID = o.OrderID
+# order by o.EmployeeID
 
 ##########################################
 #transform
