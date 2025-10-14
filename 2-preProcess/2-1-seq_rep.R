@@ -7,7 +7,8 @@ seq(1, 10, by=2)  #等差
 seq(1, 10, 2)     #等差
 seq(1.1, 10.1)   #from =1.1 ; to=10.1 ; by=1 預設值為1
 seq(1.1, 10.1, 1.1) #from =1.1 ; to=10.1 ; by=1.1
-seq(from=1,to=10,length.out=100)  #1至10之間硬要給出100個
+seq(from=1,to=10,length=3)  #1至10之間等差，共3個
+seq(from=1,to=10,length=100)  #1至10之間等差，共100個
 
 #repeat     rep(x, times)
 rep(1,10)
