@@ -1,8 +1,8 @@
 ##########################################
-#Editor: Kuo-Liang Ou
-#National Tsing Hua University ILST
+#外部資料匯入及處理
 #if you prefer SQL, these examples could be passed
 ##########################################
+#讀取外部檔案
 #setwd("somewhere your csv file located") 
 #set the working directory
 nw <-  read.csv("NWSales.csv")
@@ -10,21 +10,17 @@ typeof(nw)
 class(nw). #dply only works on data.frame
 #or you can import the NWSales.csv as the nw obejct
 
-install.packages("dplyr") #install the missing package
+if (!require("dplyr")) install.packages("dplyr")
 library(dplyr) #call the specific packages in to memory
 
-if (!require("dplyr")) install.packages("dplyr")
 #check the reauired packages, if not, install at once only
 #the require function will reture true or false 
-# filter()	篩選
+# filter()	篩選，類似 WHERE
 # select()	選擇變數
 # mutate()	新增衍生變數
 # arrange()	排序
 # summarise()	聚合變數
 # group_by()	分組，常搭配 summarise() 
-
-#Comment for multiple lines
-#Ctrl + Shift + C (Windows/Linux) or Command + Shift + C (Mac).
 
 # SELECT o.EmployeeID, YEAR(o.OrderDate), o.ShipCountry,
 # od.UnitPrice*od.Quantity as Sales, od.Discount, o.Freight
@@ -33,7 +29,8 @@ if (!require("dplyr")) install.packages("dplyr")
 # order by o.EmployeeID
 
 ##########################################
-#transform
+#transform to factor
+# https://www.w3schools.com/r/r_factors.asp
 ##########################################
 nw$Year = factor(nw$Year)
 nw$EmployeeID = factor(nw$EmployeeID)
@@ -60,7 +57,9 @@ p <- nw %>% filter(Sales >= mean(Sales))
 #group by ; need to associate with summarize(), filter() ,count() or mutate()
 #########################
 a <- group_by(nw,EmployeeID) #nothing happened
-
+  summarise(a,mean(Sales))
+  summarise(a,n())
+  summarise(a,mean(Freight))
 b <- filter(a,Sales >= mean(Sales))
 
 
