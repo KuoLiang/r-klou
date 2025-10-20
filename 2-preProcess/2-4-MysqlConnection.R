@@ -20,7 +20,8 @@ lapply(packages_to_install, library, character.only = TRUE)
 #password left to space
 #host to "localhost"
 ################
-#the query cast function 把查詢結果多欄位資料轉成單一欄位
+#the query dcast function 把查詢結果單一欄位資料轉成多欄位資料
+#melt 則是把查詢結果多欄位資料轉成單一欄位
 #formula 
 #valur.var 要轉換值的欄名
 ################
@@ -33,15 +34,21 @@ query_cast = function(query_result){
                fill = NA_real_)
 }
 ################
-
+#this is the melt
+################
 df1 = data.frame(
   ColA = c(1,2,3),
   ColB = c(11,12,13),
   ColC = c(21,22,23)
 )
 df11 <- melt(df1, 
-                measure.vars =c("ColA", "Ann_score", "Jay_score"),
+                measure.vars =c("ColA", "ColB", "ColC"),
                 variable.name = c("New_name"))
+
+################
+#but here, we need dcast()
+#because of the dbSendQuery() returns
+################
 
 mysqlconnection = dbConnect(MySQL(), user = 'student', password = '673cqdJ2s@t9Y@uc', 
                             dbname = 'northwind' ,host = '10.8.0.1')
