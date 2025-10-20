@@ -9,7 +9,13 @@ where od.orderid = o.orderid AND o.employeeid = e.employeeid
 group by e.firstname,Month order by e.firstname,Month"
       
 quantity = dbSendQuery(mysqlconnection, SQL_String) 
+quan_df=my_query(quantity)
+quan_df
+
+quantity = dbSendQuery(mysqlconnection, SQL_String) 
 quan_mat=query_cast(quantity)
+quan_mat
+
 dbClearResult(quantity)
 
 
@@ -21,7 +27,13 @@ group by e.firstname,Month
 order by e.firstname,Month"
 
 unitprice = dbSendQuery(mysqlconnection, SQL_String)
+unpr_df=my_query(unitprice)
+unpr_df
+
+unitprice = dbSendQuery(mysqlconnection, SQL_String)
 unpr_mat=query_cast(unitprice)
+unpr_mat
+
 dbClearResult(unitprice)
 
 
@@ -31,9 +43,15 @@ where od.orderid = o.orderid AND
 o.employeeid = e.employeeid
 group by e.firstname,Month
 order by e.firstname,Month"
-freight = dbSendQuery(mysqlconnection, SQL_String)
 
+freight = dbSendQuery(mysqlconnection, SQL_String)
+frig_df=my_query(freight)
+frig_df
+
+freight = dbSendQuery(mysqlconnection, SQL_String)
 frig_mat=query_cast(freight)
+frig_mat
+
 dbClearResult(freight)
 
 ################################################
