@@ -16,7 +16,7 @@ library(reshape2)
 #valur.var 要轉換值的欄名
 ################
 query_cast = function(query_result){
-  query_df=fetch(query_result, n = -1) 
+  query_df=fetch(query_result, n = -1)
   mycast=dcast(query_df,
                firstname~Month,
                fun.aggregate = sum,

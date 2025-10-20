@@ -18,7 +18,7 @@ from `order_details` as od, orders as o,employees as e
 where od.orderid = o.orderid AND
 o.employeeid = e.employeeid
 group by e.firstname,Month
-order by e.firstname,Month")
+order by e.firstname,Month"
 
 unitprice = dbSendQuery(mysqlconnection, SQL_String)
 unpr_mat=query_cast(unitprice)
