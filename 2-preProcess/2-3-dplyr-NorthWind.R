@@ -3,6 +3,7 @@
 #National Tsing Hua University ILST
 #if you prefer SQL, these examples could be passed
 ##########################################
+#讀取外部檔案
 #setwd("somewhere your csv file located") 
 #set the working directory
 nw <-  read.csv("NWSales.csv")
@@ -10,10 +11,9 @@ typeof(nw)
 class(nw). #dply only works on data.frame
 #or you can import the NWSales.csv as the nw obejct
 
-install.packages("dplyr") #install the missing package
+if (!require("dplyr")) install.packages("dplyr")
 library(dplyr) #call the specific packages in to memory
 
-if (!require("dplyr")) install.packages("dplyr")
 #check the reauired packages, if not, install at once only
 #the require function will reture true or false 
 # filter()	篩選
@@ -33,7 +33,8 @@ if (!require("dplyr")) install.packages("dplyr")
 # order by o.EmployeeID
 
 ##########################################
-#transform
+#transform to factor
+# https://www.w3schools.com/r/r_factors.asp
 ##########################################
 nw$Year = factor(nw$Year)
 nw$EmployeeID = factor(nw$EmployeeID)
