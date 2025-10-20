@@ -1,3 +1,13 @@
+#subset function
+#subset(dataframe, select...)
+library(datasets)
+str(iris)
+a <- iris
+b <- subset(iris, Species == "versicolor")
+c <- subset(iris, 
+            Species == "versicolor" |          #OR operator
+            Species == "setosa"  )[,c(1,3,5)]  #tell me what's that?
+
 #tidyvese package includes:
 #ggplot2, 資料視覺化 it's very helpful in data visualization
 #dplyr 數據處理 , like SQL 
