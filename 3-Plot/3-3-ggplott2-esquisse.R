@@ -2,8 +2,8 @@
 #Editor: Kuo-Liang Ou
 #Affililation: National Tsing Hua University ILST
 ##########################################
-
-install.packages("esquisse")
+#install required packages
+if (!require("esquisse")) install.packages("esquisse")
 library("esquisse")
 data(iris)
 esquisser()
