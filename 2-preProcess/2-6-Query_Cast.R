@@ -55,13 +55,21 @@ frig_mat
 dbClearResult(freight)
 
 ################################################
-# show up
+# show up , 其實都是 data.frame
 ################################################
 
+quan_df
+class(quan_df)
 quan_mat
 class(quan_mat)
+
+unpr_df
+class(unpr_df)
 unpr_mat
 class(unpr_mat)
+
+frig_df
+class(frig_df)
 frig_mat
 class(frig_mat)
 
