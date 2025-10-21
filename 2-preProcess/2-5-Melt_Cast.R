@@ -33,9 +33,11 @@ df_long2
 ### dcast 
 #long to wide, 變寬
 # Reshape data from long to wide format using dcast
-df_wide <- dcast(df1, SID ~ Category, value.var = "Value") #Y~X 指定 Y 軸 X 軸 
+# formula : rowvar1 + rowvar2 +...  ~  colvar1 + colvar2 +...
+
+df_wide <- dcast(df1, SID ~ Dept, value.var = "Scores") #Y~X 指定 Y 軸 X 軸 
 df_wide
-df_wide2 <- dcast(df1, Category ~ Value, value.var = "SID") #Y~X 指定 Y 軸 X 軸 
+df_wide2 <- dcast(df1, Dept ~ SID, value.var = "Scores") #Y~X 指定 Y 軸 X 軸 
 df_wide2
 
 ################
