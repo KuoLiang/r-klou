@@ -35,3 +35,7 @@ df_wide2 <- dcast(df1, SID ~ Dept+Grade, value.var = "Scores") #Y~X 指定 Y 軸
 df_wide2
 
 ################
+#將 melt 反 cast 回原來的 df (但少了 Grade)
+df_long2
+df_orig <- dcast(df_long2, SID ~ Col_Name) #Y~X 指定 Y 軸 X 軸 
+df_orig
