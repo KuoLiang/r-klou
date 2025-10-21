@@ -4,25 +4,31 @@ library(reshape2)
 #this is the melt
 ################
 df1 <- data.frame(
-  SID = c(1, 1, 2, 2),
-  Category = c("A", "B", "A", "B"),
-  Value = c(10, 20, 30, 40)
+  SID = c(1, 2, 3, 4),
+  Dept = c("A", "B", "A", "B"),
+  Scores = c(10, 20, 30, 40)
 )
 # 若有空值時
 # df1 <- data.frame(
-#   SID = c(1, 1, 2, 2),
-#   Category = c("A", "B", "A", "C"),
-#   Value = c(10, 10, 20, 20)
+#   SID = c(1, 2, 3, 4),
+#   Dept = c("A", "B", "A", "C"),
+#   Scores = c(10, 10, 20, 20)
 # )
 
 df1
 ### melt to 2 cols with Col_Name and values
 #wide to long ,伸長, 把欄位名稱變成新欄位的值
+#melt(data,id.vars,measure.vars,variable.name = "variable")
 
 df_long <- melt(df1, 
-             measure.vars =c("SID", "Category","Value"),   #哪些欄位需要依序往下伸長
-             variable.name = c("Col_Name"))   #原來欄位名稱變成值後，該欄的新名稱
+             measure =c("SID", "Dept","Scores"),   #哪些欄位需要依序往下伸長
+             variable = c("Col_Name"))   #原來欄位名稱變成值後，該欄的新名稱
 df_long
+df_long2 <- melt(df1, 
+                id=c("SID"),
+                measure =c("Dept","Scores"),   #哪些"欄位"需要依序往下伸長
+                variable = c("Col_Name"))   #原來欄位名稱變成值後，該欄的新名稱
+df_long2
 
 ### dcast 
 #long to wide, 變寬
