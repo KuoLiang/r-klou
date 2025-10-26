@@ -83,3 +83,9 @@ iris %>%
 newIris1 %>% 
   group_by(greater.mean) %>% 
   summarise(mycount = n())
+
+#產生流水號
+iris2 <- iris %>%
+  mutate(id = row_number())
+irisr <- mutate(iris,id=row_number())     #the same as above
+iris2 # make a col of id

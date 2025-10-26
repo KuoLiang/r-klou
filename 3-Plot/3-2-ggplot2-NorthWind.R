@@ -21,7 +21,7 @@ nw$ShipCountry = factor(nw$ShipCountry)
 
 ##########################################
 #packages
-install.packages("ggplot2")
+if (!require("ggplot2")) install.packages("ggplot2")
 library(ggplot2)
 ##########################################
 #hints:
@@ -60,7 +60,7 @@ e1 <-  ggplot(data=nw, aes(x=Freight,y=Sales,fill=Year,color=Year)) #fill用在�
 e + geom_point()
 e + geom_point() + geom_smooth()
 e1+ geom_point() + geom_smooth()
-e1+ geom_quantile() 
+e1+ geom_quantile()       # need to install stat_quantile()
 e1+ geom_point() + geom_quantile(quantiles = c(0.1, 0.5, 0.9),size=2,alpha=0.5) 
 
 ##########################################
@@ -97,15 +97,42 @@ u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
   facet_grid(EmployeeID~Year) #y = EmployeeID x= Year
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
-  facet_grid(rows=vars(EmployeeID),cols=vars(Year))      
+  facet_grid(rows=vars(EmployeeID),cols=vars(Year))  
+
 ##########################################
+#Review of dplyr
+##########################################
+#dplyr 數據處理 , like SQL 
+# filter()	篩選
+# select()	選擇變數
+# mutate()	新增衍生變數
+# arrange()	排序
+# summarise()	聚合變數
+# group_by()	分組，常搭配 summarise() 
 
 library(dplyr)
+
+#The NW dataset
 f <-  filter(nw, ShipCountry == "France")
 f2 <- filter(f,Sales >= 1000, Sales <=1100)
 f2
+
+#The Iris dataset
 selected = select(iris, Sepal.Length, Sepal.Width, Petal.Length)
+selected
+
 newIris = mutate(iris, greater.mean = Sepal.Width > mean(Sepal.Width))
+newIris
+
 newIris2 = mutate(iris, area = Sepal.Length * Sepal.Width)
-myaesc = arrange(newIris, Petal.Length, Petal.Width)
+newIris2
+
+myaesc = arrange(newIris, Petal.Length, Petal.Width)  #排序
 mydesc = arrange(newIris, desc(Petal.Length), Petal.Width)
+
+##########################################
+#try to plot some for above datasets by yourself
+##########################################
+plot(newIris)
+newIris$greater.mean <- as.factor((newIris$greater.mean))
+plot(newIris[,1:4],col=newIris$greater.mean)

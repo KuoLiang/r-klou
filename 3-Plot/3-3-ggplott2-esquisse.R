@@ -6,7 +6,8 @@
 if (!require("esquisse")) install.packages("esquisse")
 library("esquisse")
 data(iris)
-esquisser()
+options("esquisse.viewer" = "browser")
+esquisser() #or esquisser(iris)
 library("ggplot2")
 ggplot(diamonds) +
   aes(x = cut, y = carat) +
