@@ -1,9 +1,5 @@
 ##########################################
-#Editor: Kuo-Liang Ou
-#National Tsing Hua University ILST
 #Reference: ggplot2 cheat sheet
-##########################################
-#dataset
 ##########################################
 #from database
 source("mysql_conn.R") #connect to mysql
