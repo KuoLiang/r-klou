@@ -2,13 +2,14 @@
 #Reference: ggplot2 cheat sheet
 ##########################################
 #from database
+setwd("/Users/klou/Documents/GitHub/r-klou/3-Plot")
 source("mysql_conn.R") #connect to mysql
 nw <-  fetch(myquery_result, n=-1)  #read all the data from result
-#from local file
+#or you can import the NW from local file
 #setwd("somewhere of your working directory")
 nw <-  read.csv("NWSales.csv")
 #from remote file
-#nw <-  read.csv("https://github.com/KuoLiang/r-klou/blob/f6cc7b13890bbedd42d9e5d4a7e684dafa239495/Plot/NWSales.csv")
+#nw <-  read.csv("https://github.com/KuoLiang/r-klou/blob/main/3-Plot/NWSales.csv")
 nw #showout the dataframe
 
 ##########################################
