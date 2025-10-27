@@ -1,6 +1,4 @@
 ##########################################
-#Editor: Kuo-Liang Ou
-#Affililation: National Tsing Hua University ILST
 #Reference: ggplot2 cheat sheet
 ##########################################
 source("mysql_conn.R") #connect to mysql
