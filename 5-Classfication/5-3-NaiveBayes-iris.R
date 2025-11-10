@@ -27,6 +27,7 @@ conf
 #No Information Rate 隨機猜正確率
 #P-Value [Acc > NIR] 檢驗Acc 是否顯著與隨機猜有所不同
 #Kappa between -1 to 1 資料集是否平衡
+#Mcnemar's Test P-Value 相依樣本卡方檢定，兩組間成對個案的類別相互改變
 #其它請見help
 ?caret::confusionMatrix
 

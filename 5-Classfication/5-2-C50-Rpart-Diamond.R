@@ -16,9 +16,9 @@ if (!require("rpart.plot")) install.packages("rpart.plot")
 library(rpart.plot)
 
 model1 <- rpart(color ~., data = sample_diamonds, method = 'class')
-rpart.plot(model1, extra = 100) #Display extra information at the nodes
+rpart.plot(model1, extra = 106) #Display extra information at the nodes
 summary(model1)  
-prp(model1)
+prp(model1) #plot r part model
 
 model11 <- rpart(color ~ carat + cut, data = sample_diamonds, method = 'class')
 rpart.plot(model11, extra = 100) # try 106, 104, 100
