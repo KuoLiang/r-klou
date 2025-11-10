@@ -2,6 +2,8 @@ if (!require("ggplot2")) install.packages("ggplot2")
 library(ggplot2)
 
 data(diamonds)
+#3-5-diamonds-plot.R
+
 set.seed(2025) #固定的亂數
 sample_index <- sample(1:nrow(diamonds), size = 1000)
 sample_diamonds <- diamonds[sample_index,]
