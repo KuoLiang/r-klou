@@ -48,28 +48,3 @@ table(test_set$color,result)
 conf <- confusionMatrix(data=result, reference = test_set$color)
 conf
 
-########################
-#SVM
-########################
-#library(e1071)
-data(iris)
-x <- subset(iris, select = -Species)
-y <- iris$Species
-model <- svm(Species ~ ., data = iris)
-pred_result <- predict(model, x)
-table(pred_result,y)
-#plot(x, data, formula, fill = TRUE, grid = 50, slice = list(),
-#     symbolPalette = palette(), svSymbol = "x", dataSymbol = "o", ...)
-#see ?plot.svm()
-
-plot(model, iris, Petal.Width ~ Petal.Length)
-#解析度 grid =50 , 其它維度切片slice (list object)  0 by default
-
-plot(model, iris, Petal.Width ~ Petal.Length, grid=100,
-     slice = list(Sepal.Width = 3,Sepal.Length = 4))
-plot(model, iris, Petal.Width ~ Petal.Length, grid=50,
-     slice = list(Sepal.Width = 3.1,Sepal.Length = 4.1))
-
-plot(model, iris, Sepal.Width ~ Petal.Width,
-     slice = list(Sepal.Length = 3, Petal.Length = 4))
-

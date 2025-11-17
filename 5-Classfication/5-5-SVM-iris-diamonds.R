@@ -1,6 +1,8 @@
 if(! require("e1071")) install.packages("e1071")
 library(e1071)
-
+########################
+#SVM
+########################
 ## classification mode
 # default with factor response: 正規寫法
 model <- svm(Species ~ ., data = iris,
@@ -12,6 +14,32 @@ plot(model,iris,Petal.Length~Petal.Width)
 plot(model,iris,Petal.Length~Sepal.Width)
 plot(model,iris,Petal.Length~Sepal.Length)
 plot(model,iris,Sepal.Width~Sepal.Length)
+
+plot(model, iris, Petal.Width ~ Petal.Length)
+#解析度 grid =50 , 其它維度切片slice (list object)  0 by default
+
+plot(model, iris, Petal.Width ~ Petal.Length, grid=100,
+     slice = list(Sepal.Width = 3,Sepal.Length = 4))
+plot(model, iris, Petal.Width ~ Petal.Length, grid=50,
+     slice = list(Sepal.Width = 3.1,Sepal.Length = 4.1))
+
+plot(model, iris, Sepal.Width ~ Petal.Width,
+     slice = list(Sepal.Length = 3, Petal.Length = 4))
+
+
+########################
+#predict with svm model
+########################
+x <- subset(iris, select = -Species)
+y <- iris$Species
+model <- svm(Species ~ ., data = iris) #kernel default = radial
+pred_result <- predict(model, x)
+table(pred_result,y)
+#plot(x, data, formula, fill = TRUE, grid = 50, slice = list(),
+#     symbolPalette = palette(), svSymbol = "x", dataSymbol = "o", ...)
+#see ?plot.svm()
+
+
 
 # alternatively the traditional interface: f(x)=y ；y為依變數；x為自變數
 x <- subset(iris, select = -Species)
@@ -69,7 +97,7 @@ table(pred21, y$Species) #previous prediction
 library(ggplot2)
 data(diamonds)
 plot(diamonds$carat,diamonds$price)
-set.seed(2022)
+set.seed(2025)
 sample_index= sample(nrow(diamonds),size=10000)
 sample_data = diamonds[sample_index,]
 tune.model = tune(svm,
@@ -77,7 +105,10 @@ tune.model = tune(svm,
                   data=sample_data,
                   kernel="radial", 
                   range=list(cost=c(1,10), gamma=c(0.1,1))
-) #be careful of time consuming (it may cost 5 mins or more)
+) 
+################################
+#be careful of time consuming (it may cost 5 mins or more)
+################################
 # 調參數的最主要一行
 # cost 處罰系數,愈大時代表愈不能容忍誤判,會使用MARGIN變小,易overfitting
 # cost 愈小, margin 愈大
