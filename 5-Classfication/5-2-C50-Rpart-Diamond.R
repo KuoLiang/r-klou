@@ -63,27 +63,59 @@ predicted <- predict(model1, newcases, type="class")
 
 predicted
 
-########
+################################################
 #caret = Classification And REgression Training
+#find out the best parameters of classfication and regression
+################################################
 
 if (!require("caret")) install.packages("caret")
 library(caret)
 
-ctrl <- caret::trainControl(method="repeatedcv",
+ctrl <- caret::trainControl(method="repeatedcv",  # cross validation method
                             repeats = 10) #repeated k-fold cross-validation 
 C50Fit <- caret::train(Species ~ . ,data = iris, method = "C5.0", 
                        trControl = ctrl)
 C50Fit
 ggplot(C50Fit)
 #winnowing : select which features include in the analysis
-##########
+
+
+#try the suggessed parameters above
+input <- iris[,1:4]
+output <- iris[,5]
+model1 <- C5.0(input, output, control = C5.0Control(noGlobalPruning = F,minCases=1) , trials = 1, model = rules, winnow = FALSE)
+plot(model1,main="C5.0 Decision Tree - Unpruned, min=1") #try to change minCases to 3
+
+model_ori <- C5.0(input, output, control = C5.0Control(noGlobalPruning = F,minCases=1))
+plot(model_ori,main="C5.0 Decision Tree - Unpruned, min=1") #try to change minCases to 3
+
+
+##################################################
+#try to fit diamonds data with rpart algorithm
+##################################################
+
 RpartFit <- caret::train(color ~ . ,data = sample_diamonds, 
                          method = "rpart", 
                         trControl = ctrl)
 RpartFit
 ggplot(RpartFit)
 
-#########
+model1 <- rpart(color ~., data = sample_diamonds, method = 'class',cp = 0.008860759)
+rpart.plot(model1, extra = 106) #Display extra information at the nodes
+summary(model1)  
+prp(model1) #plot r part model
+
+model_ori <- rpart(color ~., data = sample_diamonds, method = 'class')
+rpart.plot(model_ori, extra = 106) #Display extra information at the nodes
+summary(model_ori)  
+prp(model_ori) #plot r part model
+
+#quite different,right?
+
+##################################################
+# cforest
+##################################################
+
 CForestFit <- caret::train(Species ~ . ,data = iris, 
                            method = "cforest", 
                           trControl = ctrl)
@@ -98,3 +130,4 @@ predicted <- predict(CForestFit, newcases, type="prob")
 predicted
 predicted <- predict(CForestFit, newcases, type="raw")
 predicted
+
