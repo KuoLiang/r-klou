@@ -125,35 +125,9 @@ table(pred_diamond,sample_data$color)
 conf <- caret::confusionMatrix(data=pred_diamond, reference = sample_data$color)
 conf
 
-################################
-#dummyVars
-################################
+
 model_diamond <- svm(price ~ ., data = sample_data,
                      kernel="radial")
 pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
 table(pred_diamond,sample_data$price) #!!!!! 把價錢當factor ???
-#上方為錯誤示範
-
-if(! require("dummy")) install.packages("dummy")
-library(dummy)
-
-dummy_diamonds <- dummy(diamonds[,-3]) #without color
-my_diamonds <- cbind(diamonds,dummy_diamonds)
-
-set.seed(2025)
-sample_index= sample(nrow(my_diamonds),size=10000)
-sample_data = my_diamonds[sample_index,]
-tune.model = tune(svm,
-                  color ~.,
-                  data=sample_data,
-                  kernel="radial", 
-                  range=list(cost=c(1,10), gamma=c(0.1,1))
-) #be careful of time consuming (it may cost 5 mins or more)
-plot(tune.model)
-summary(tune.model)
-model_diamond <- svm(color ~ ., data = sample_data,
-                     kernel="radial",cost = 10, gamma = 0.1 )
-pred_diamond <- predict(model_diamond, sample_data, decision.values = TRUE) #列出機率
-table(pred_diamond,sample_data$color) 
-
-########
+#以SVM猜數值為錯誤示範
