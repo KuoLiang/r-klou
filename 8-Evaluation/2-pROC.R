@@ -1,6 +1,16 @@
-install.packages("pROC")
+##########################################
+#Editor: Kuo-Liang Ou
+#National Tsing Hua University ILST
+##########################################
+#ROC = the probability curve of the values 
+#AUC = separability of the different groups of values/labels.
+#多類別ROC
+
+if (!require("pROC")) install.packages("pROC")
 library(pROC)
+if (!require("e1071")) install.packages("e1071")
 library(e1071)
+
 result_radial_1<-svm(Species~.,iris,
                      kernel="radial",gamma=10^-1)
 #gamma值如果愈小資料點影響的範圍愈大
