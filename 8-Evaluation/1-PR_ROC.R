@@ -4,11 +4,11 @@
 ##########################################
 #ROC = the probability curve of the values 
 #AUC = separability of the different groups of values/labels.
-install.packages("PRROC")
+if (!require("PRROC")) install.packages("PRROC")
 library(PRROC)
-install.packages("verification")
+if (!require("verification")) install.packages("verification")
 library(verification)
-
+set.seed(2025)
 # random generate C1
 C1 = rnorm(300); #mean = 0 ; sd =1
 C1
