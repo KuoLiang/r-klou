@@ -4,6 +4,7 @@
 ##########################################
 #矩陣 (matrix) 是二維資料物件
 #由列 (row) 與行 (column) 組成
+#dist Distance Matrix Computation
 dist(c(1:10)) #try the dist function 10點一維空間距離
 dist(cbind(c(1:10),c(1:10)),method="manhattan") # change the method
 dist(cbind(c(1:10),c(1:10)),method="euclidean")  #10點二維空間距離
