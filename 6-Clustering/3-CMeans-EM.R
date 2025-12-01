@@ -2,10 +2,14 @@
 #Editor: Kuo-Liang Ou
 #National Tsing Hua University ILST
 ##########################################
+if (!require("e1071")) install.packages("e1071")
 library(e1071)
+if (!require("ggplot2")) install.packages("ggplot2")
 library(ggplot2)
+
 iris_sample = iris[,1:4]
-set.seed(2022)
+
+set.seed(2025)
 sample_index=sample(nrow(diamonds),10000)
 diamond_sample= diamonds[sample_index,-c(2,3,4)] #omitted the nominal
 
