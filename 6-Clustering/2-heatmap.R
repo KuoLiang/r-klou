@@ -17,8 +17,8 @@ heatmap(irisMatrix)  #因為 heapmap 只接受相同資料型態之二維 matrix
 #another heatmap :Pretty Heatmaps 不同的畫圖法
 if(!require(pheatmap)) install.packages("pheatmap")
 library(pheatmap)
-pheatmap(irisMatrix,)
-pheatmap(irisMatrix,kmeans_k = 2)  #搭配 kmenas
+pheatmap(irisMatrix) # x y 分別為 150 iris 編號，顏色為距離
+pheatmap(irisMatrix,kmeans_k = 2)  #搭配 kmenas x 為編號，y 為 cluster 中心，顏色為距離
 pheatmap(irisMatrix,kmeans_k = 3)
 pheatmap(irisMatrix,kmeans_k = 4)
 #各種內建調色盤
