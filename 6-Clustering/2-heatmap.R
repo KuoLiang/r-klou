@@ -7,7 +7,7 @@
 #dist Distance Matrix Computation
 dist(c(1:10)) #try the dist function 10點一維空間距離
 dist(cbind(c(1:10),c(1:10)),method="manhattan") # change the method
-dist(cbind(c(1:10),c(1:10)),method="euclidean")  #10點二維空間距離
+dist(cbind(c(1:10),c(1:10)),method="euclidean")  #10點二維空間距離 XY座標
 dist(cbind(c(1:10),c(1:10),c(1:10)),method="euclidean") #10點三維空間距離
 
 irisMatrix = as.matrix(dist(iris[,1:4])) #put the distances into Matrix
