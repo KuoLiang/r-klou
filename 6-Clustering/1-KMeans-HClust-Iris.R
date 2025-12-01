@@ -24,10 +24,11 @@ h_result = hclust(dist(iris_sample),method="complete")  # distance matrix
 #h_result = hclust(dist(iris_sample),method="single")
 #h_result = hclust(dist(iris_sample),method="average")
 #h_result = hclust(dist(iris_sample),method="centroid")
+#method could be: single complete average centroid
+
 h_result
 h_result$height # the value of the criterion associated with the clustering method 
 h_result$merge
-#method could be: single complete average centroid
 
 plot(h_result,labels=iris$Species)
 
