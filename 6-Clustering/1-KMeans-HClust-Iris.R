@@ -12,7 +12,7 @@ table(iris$Species,k_result$cluster) #confusion matrix
 plot(iris[c("Sepal.Length","Sepal.Width")],
      col=k_result$cluster) # color 設定為群代號
 points(k_result$centers[,c("Sepal.Length","Sepal.Width")],
-       col=1:3, pch=2)
+       col=1:3, pch=2) #顯示中心點
 
 ##########################################
 # hierarchical cluster
