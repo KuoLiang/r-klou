@@ -14,13 +14,13 @@ irisMatrix = as.matrix(dist(iris[,1:4])) #put the distances into Matrix
 irisMatrix
 heatmap(irisMatrix)  #因為 heapmap 只接受相同資料型態之二維 matrix 
 
-#another heatmap :Pretty Heatmaps
+#another heatmap :Pretty Heatmaps 不同的畫圖法
 if(!require(pheatmap)) install.packages("pheatmap")
 library(pheatmap)
-pheatmap(irisMatrix)
+pheatmap(irisMatrix,)
 pheatmap(irisMatrix,kmeans_k = 2)  #搭配 kmenas
 pheatmap(irisMatrix,kmeans_k = 3)
-pheatmap(irisMatrix,kmeans_k = 4,cutree_rows=4,cutree_cols=10)
+pheatmap(irisMatrix,kmeans_k = 4)
 #各種內建調色盤
 pheatmap(irisMatrix,kmeans_k = 4,heat.colors(100))
 pheatmap(irisMatrix,kmeans_k = 4,terrain.colors(100))
