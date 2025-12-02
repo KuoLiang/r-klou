@@ -17,10 +17,10 @@ group=c(rep(0,times=100),rep(1,times=100)) #分兩組
 pred1 <- prediction( rnorm(200,mean=1,sd=1), ROCR.simple$labels) 
 pred1 <- prediction( rnorm(200,mean=2,sd=2), ROCR.simple$labels) 
 
-perf <- performance(pred,"tpr","fpr") 
+perf <- performance(pred1,"tpr","fpr") 
 perf
 plot(perf)
-perf <- performance(pred, measure = "auc")   #area under curve
+perf <- performance(pred1, measure = "auc")   #area under curve
 perf@y.values
 
 
