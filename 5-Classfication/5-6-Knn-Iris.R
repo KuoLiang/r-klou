@@ -1,15 +1,19 @@
-library(class)
-set.seed(2020)
+if (!require("class")) install.packages("class")
+library(class)  #various classfication including knn
+
+set.seed(2025)
 train.index = sample(x=1:nrow(iris), 
                      size=ceiling(0.8*nrow(iris) )) #抽樣8/2
 train_set = iris[train.index,]
 test_set = iris[-train.index,]
 ###
+#需要三個 object 當參數
+###
 iris.knn <- knn(
     train_set[,1:4], #variables of training set 
     test_set[,1:4],  #variables of testing set
     train_set[,5],   #factor of true class of training set
-    k = 3, prob = F)
+    k = 3, prob = T) # prob 是否回傳機率值
 iris.knn
 summary(iris.knn)
 result = cbind(iris.knn,test_set[5])  #把預測的品種與真實的品種比較
@@ -32,7 +36,8 @@ table(result)
 ##########
 # k 應該多少呢？
 ##########
-install.packages("caret")
+if (!require("caret")) install.packages("caret")
+library("caret")
 #The caret package contains functions to streamline 
 #the model training process for complex regression and 
 #classification problems
@@ -46,9 +51,3 @@ knnFit <- caret::train(Species ~ . ,data = iris, method = "knn",
 knnFit
 plot(knnFit)
 
-#################
-#setwd("/Users/klou/Documents/GitHub/r-klou/5-Classfication")
-source("mysql_conn.R") #connect to mysql
-dp <-  fetch(myquery_result, n=-1)  #read all the data from result
-dp
-##########################################

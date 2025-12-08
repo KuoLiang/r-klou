@@ -1,7 +1,8 @@
-#install.packages("neuralnet")
-#install.packages("dummy")
+if (!require("neuralnet")) install.packages("neuralnet")
 library(neuralnet)
+if (!require("dummy")) install.packages("dummy")
 library(dummy)
+if (!require("dplry")) install.packages("dplyr")
 library(dplyr)
 iris_dummy = cbind(iris, dummy(iris,int=T)) #強迫轉為int
 #增加三欄編碼，因為只能用數值作為class
