@@ -6,22 +6,32 @@ if (!require("dplry")) install.packages("dplyr")
 library(dplyr)
 iris_dummy = cbind(iris, dummy(iris,int=T)) #強迫轉為int
 #增加三欄編碼，因為只能用數值作為class
+#dummy a data frame containing at least one factor or character vector
 iris_dummy 
-set.seed(2020)
+set.seed(2025)
 sample_size = 0.8 * nrow(iris_dummy)   
 sample_index = sample(nrow(iris_dummy),sample_size) #取樣索引
 iris_train = iris_dummy[sample_index,]
 iris_test = iris_dummy[-sample_index,]
+##########################
 #neuralnet(formula, data, hidden = 1, threshold = 0.01) 
+######
+#以下三選一
 ann_formula = Species_setosa + Species_versicolor + Species_virginica ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
-ann_formula = Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
+#use dummy
 #setosa 變成欄位了；versicolor and virginica 也是欄位
+ann_formula = Species_versicolor + Species_virginica ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
+#可以只針對特定 label
+##########
+ann_formula = Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
+#dummy in not needed
 #############################################
 #ANN
 #############################################
 
 model1= neuralnet(formula = ann_formula, data=iris_train) #use the training data
 plot(model1)
+
 model1 #show out the nn information
 result_pre=predict(model1, iris_test) #predict the test data
 result_pre #prediction result
@@ -57,9 +67,9 @@ table(iris_test$Species, prediction_label)
 #######################
 #tunning the best parameter
 #######################
-install.packages("caret")
+if (!require("caret")) install.packages("caret")
 library(caret) 
-
+#規定限用 dummy formula
 best_model = caret::train(form=ann_formula, data=iris_train, method="neuralnet",  
                 tuneGrid = expand.grid(.layer1=c(1:3), .layer2=c(0:3), .layer3=c(0:3)), 
             #   tuneGrid = expand.grid(.layer1=c(1:4), .layer2=c(0:4), .layer3=c(0)),               
