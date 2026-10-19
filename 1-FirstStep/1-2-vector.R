@@ -15,6 +15,8 @@ f = a + e
 g = a * e
 
 h = c(1,2)
+i = a + h
+j = a * h
 
 a < e
 
