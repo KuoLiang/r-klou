@@ -21,6 +21,8 @@ typeof(b[1])   # always returns "list"
 a
 a[[1]]
 typeof(a[[1]])
+typeof(a[1])
+typeof(a)
 b
 b[["name"]]      #記得加雙引號
 b["name"]
