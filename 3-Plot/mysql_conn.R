@@ -51,8 +51,6 @@ WHERE e.EmployeeID=o.EmployeeID AND o.OrderID = od.OrderID"
 mysqlconnection <-  dbConnect(MySQL(), user = 'student', password = '673cqdJ2s@t9Y@uc', dbname = 'northwind' ,host = '10.8.0.1')
 #  dbConnect()：建立資料庫連線
 #    user / password = 帳號密碼、dbname = 資料庫名稱、host = 伺服器位址
-#  ⚠️ 安全提醒：密碼直接寫在程式碼裡，上傳到 GitHub 等公開地方就會被所有人看到。
-#     比較安全的做法是把密碼存在環境變數，再用 Sys.getenv("DB_PASSWORD") 讀取。
 dbListTables(mysqlconnection)
 #  列出資料庫中所有資料表的名稱，可以用來確認連線成功
 

@@ -25,21 +25,11 @@ packages_to_install <- c("RMySQL", "reshape2")
 #   之後就可以像內建函數一樣呼叫：install_if_missing("dplyr")
 install_if_missing <- function(pkg)
 {
-    if (!require(pkg, quietly = TRUE))
+      if (!require(pkg, character.only = TRUE, quietly = TRUE))
       {
         install.packages(pkg)
       }
 }
-#  ⚠️ 這個函數有一個不容易發現的問題：
-#     require(pkg) 會把 pkg 當成「套件的名字」，去找一個叫做 "pkg" 的套件，
-#     而不是去讀變數 pkg 裡存的 "RMySQL"。
-#     結果 require 永遠回傳 FALSE，每次執行都會重新安裝套件（浪費時間，但不會壞掉）。
-#     修正方法：加上 character.only = TRUE，告訴 require「pkg 是變數，請讀它的內容」：
-#       if (!require(pkg, character.only = TRUE, quietly = TRUE))
-
-install_if_missing(packages_to_install)
-#  把整個向量 c("RMySQL","reshape2") 一次丟進函數
-#  （require 一次只能檢查一個套件，所以建議用下面的 lapply 寫法）
 
 # Or use lapply (Apply a list to a function) to apply the function to each package in the vector
 lapply(packages_to_install, install_if_missing) #lapply( list, function) 一次安裝多個 packages
@@ -70,8 +60,6 @@ lapply(packages_to_install, library, character.only = TRUE)
 mysqlconnection = dbConnect(MySQL(), user = 'student', password = '673cqdJ2s@t9Y@uc',
                             dbname = 'northwind' ,host = '10.8.0.1')
 #  dbConnect() 建立連線，存成 mysqlconnection，之後所有查詢都透過它
-#  ⚠️ 安全提醒：密碼直接寫在程式碼裡，上傳到 GitHub 等公開地方就會被所有人看到。
-#     比較安全的做法是把密碼存在環境變數，再用 Sys.getenv("DB_PASSWORD") 讀取。
 dbListTables(mysqlconnection)
 #  列出資料庫中所有的資料表名稱，例如 "customers" "employees" "orders" ...
 #  可以用來確認連線成功
@@ -110,8 +98,9 @@ order by e.firstname,Month"
 #  和上面相同的結構，改成計算「平均單價」avg(unitprice)
 
 query_result = dbSendQuery(mysqlconnection, SQL_String)
-#  ⚠️ 前一個 query_result 沒有用 dbClearResult() 清除就送出新查詢，
+#  前一個 query_result 沒有用 dbClearResult() 清除就送出新查詢，
 #     RMySQL 可能會出現警告或錯誤。建議每次 fetch 完加上：dbClearResult(query_result)
+dbClearResult(query_result)
 query_df=fetch(query_result, n = -1)
 query_df
 ###

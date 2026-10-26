@@ -6,19 +6,16 @@
 #   seq()      ：產生等差數列，例如 1, 3, 5, 7, 9
 #   sequence() ：一次產生好幾段從頭數起的數列，再接在一起
 #   rep()      ：把某個值重複很多次
-#
-# 說明：每行程式碼下方的 #> 是執行後會看到的結果（R 4.6.1 實際執行）。
-#       輸出前面的 [1]、[15] 不是答案，是「這一行從第幾個元素開始」的標記。
 # ============================================================
 
-#製造連續等差數列
-#多行註解熱鍵
-#Comment for multiple lines
-#Ctrl + Shift + C (Windows/Linux) or Command + Shift + C (Mac).
+# 製造連續等差數列
+# 多行註解熱鍵
+# Comment for multiple lines
+# Ctrl + Shift + C (Windows/Linux) or Command + Shift + C (Mac).
 # 【補充】在 RStudio 選取多行後按上面的快速鍵，可以一次在每行前面加上或取消 #。
 
-#sequence  製造由X開始到Y結束之等差數列,差值為實數
-#seq(from, to, by, length.out, along.with, ...)
+#製造由X開始到Y結束之等差數列,差值為實數
+#seq(from, to, by, length.out, ...)
 # 【補充】seq() 常用的參數：
 #   from = 起點，to = 終點，by = 每次增加多少（公差），
 #   length.out = 總共要幾個數字（by 和 length.out 擇一使用）
