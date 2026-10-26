@@ -98,9 +98,7 @@ order by e.firstname,Month"
 #  和上面相同的結構，改成計算「平均單價」avg(unitprice)
 
 query_result = dbSendQuery(mysqlconnection, SQL_String)
-#  前一個 query_result 沒有用 dbClearResult() 清除就送出新查詢，
-#     RMySQL 可能會出現警告或錯誤。建議每次 fetch 完加上：dbClearResult(query_result)
-dbClearResult(query_result)
+
 query_df=fetch(query_result, n = -1)
 query_df
 ###
@@ -120,7 +118,7 @@ query_df
 
 ################
 # 【補充】用完資料庫後記得關閉連線，釋放伺服器資源：
-#   dbDisconnect(mysqlconnection)
+   dbDisconnect(mysqlconnection)
 
 # ============================================================
 # 重點整理
