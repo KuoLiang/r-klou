@@ -48,7 +48,7 @@ WHERE e.EmployeeID=o.EmployeeID AND o.OrderID = od.OrderID"
 # ------------------------------------------------------------
 # 第三部分：連線並送出查詢
 # ------------------------------------------------------------
-mysqlconnection <-  dbConnect(MySQL(), user = 'student', password = '673cqdJ2s@t9Y@uc', dbname = 'northwind' ,host = '10.8.0.1')
+mysqlconnection <-  dbConnect(MySQL(), user = 'root', password = 'root', dbname = 'northwind' ,host = '127.0.0.1', port=8889)
 #  dbConnect()：建立資料庫連線
 #    user / password = 帳號密碼、dbname = 資料庫名稱、host = 伺服器位址
 dbListTables(mysqlconnection)
