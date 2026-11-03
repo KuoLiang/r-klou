@@ -178,13 +178,21 @@ f2 + geom_violin() + ylim(0,1000) + coord_cartesian(ylim=c(0,500)) #格放
 ##########################################
 #Facet
 u <- ggplot(data=nw, aes(x=Sales))
+
+#如果中文出現亂碼或豆腐字
+library("showtext")
+showtext_auto()
+font_add("STHeiti Light", "STHeiti Light.ttc") # 需有對應的字型路徑或名稱
+
 ##########################################
 # 【補充】facet_grid(列 ~ 欄)：
 #   ~ 左邊的變數決定「上下排」，右邊的變數決定「左右排」，不需要的那一邊寫一個點 .
 #   新寫法 facet_grid(rows = vars(...), cols = vars(...)) 的效果相同
 
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
-  facet_grid(EmployeeID~.) #y = EmployeeID
+  facet_grid(EmployeeID~.) + #y = EmployeeID
+  labs(title = "中文標題", x = "這是x", y = "這是y") +
+  theme(text = element_text(family = "STHeiti Light"))
 #  每位員工一張密度圖，9 張由上往下排
 u + geom_density(aes(fill=EmployeeID),alpha= 0.2)+
   facet_grid(rows=vars(EmployeeID)) #y = EmployeeID
