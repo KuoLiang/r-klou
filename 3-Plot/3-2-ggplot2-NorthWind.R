@@ -63,7 +63,7 @@ library(ggplot2)
 #Aesthetic : x y shape, color, size
 #Layer : geom_point() geom_line() geom_bar() geom_violin()
 #                 geom_boxplot() geom_histogram() geom_path()
-# the followings are the practices of geom functions
+# the followings are the practices of geom functions (幾何圖形)
 ##########################################
 
 # ------------------------------------------------------------
