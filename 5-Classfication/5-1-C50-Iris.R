@@ -40,6 +40,7 @@ subset(iris, Species == "setosa" , Species =="versicolor") # 常見錯誤用法
 #     所以 Species == "versicolor" 被當成「選欄位」的條件，結果沒有選到任何欄位：
 #> 資料框沒有行但有 50 列
 #  也就是「50 列 setosa，但 0 個欄位」
+#  補充：C/C++ 使用 && ; Python 使用 AND
 subset(iris, Species == "setosa" & Species =="versicolor") # AND
 #  & 才是「且」。同一朵花不可能同時是兩個品種，所以結果是 0 列：
 #> <0 列> (或零長度的 row.names)
@@ -56,7 +57,7 @@ summary(iris)
 ####
 # 以下畫圖的部分和 3-1 範例相同，用來觀察「哪個特徵最能區分品種」
 
-par(mar=c(7,5,1,1)) # more space to labels 下左上右 inches
+par(mar=c(7,5,1,1)) # more space to labels 下左上右 
 #  mar 的單位其實是「文字行數」，不是英吋
 boxplot(iris,las=2)
 #  las = 2：x 軸文字直立，欄位名稱比較不會重疊
