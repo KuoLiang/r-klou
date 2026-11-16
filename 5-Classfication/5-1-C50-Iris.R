@@ -40,6 +40,7 @@ subset(iris, Species == "setosa" , Species =="versicolor") # 常見錯誤用法
 #     所以 Species == "versicolor" 被當成「選欄位」的條件，結果沒有選到任何欄位：
 #> 資料框沒有行但有 50 列
 #  也就是「50 列 setosa，但 0 個欄位」
+#  補充：C/C++ 使用 && ; Python 使用 AND
 subset(iris, Species == "setosa" & Species =="versicolor") # AND
 #  & 才是「且」。同一朵花不可能同時是兩個品種，所以結果是 0 列：
 #> <0 列> (或零長度的 row.names)
@@ -56,18 +57,18 @@ summary(iris)
 ####
 # 以下畫圖的部分和 3-1 範例相同，用來觀察「哪個特徵最能區分品種」
 
-par(mar=c(7,5,1,1)) # more space to labels 下左上右 inches
+par(mar=c(7,5,1,1)) # more space to labels 下左上右 
 #  mar 的單位其實是「文字行數」，不是英吋
 boxplot(iris,las=2)
 #  las = 2：x 軸文字直立，欄位名稱比較不會重疊
 #  （Species 也被當成數字 1~3 畫了一個箱子，可以忽略）
-irisVer <- subset(iris, Species == "versicolor")
 irisSet <- subset(iris, Species == "setosa")
+irisVer <- subset(iris, Species == "versicolor")
 irisVir <- subset(iris, Species == "virginica")
 
 par(mfrow=c(1,3),mar=c(6,3,2,1))  #一列三欄
-boxplot(irisVer[,1:4], main="Versicolor",ylim = c(0,8),las=2)
 boxplot(irisSet[,1:4], main="Setosa",ylim = c(0,8),las=2)
+boxplot(irisVer[,1:4], main="Versicolor",ylim = c(0,8),las=2)
 boxplot(irisVir[,1:4], main="Virginica",ylim = c(0,8),las=2)
 #  三個品種並排比較：Petal.Length、Petal.Width 差異最明顯
 #  → 可以猜到決策樹會優先用花瓣來分類
@@ -82,13 +83,15 @@ hist(irisVer$Petal.Length,breaks=seq(0,8,l=17),xlim=c(0,8),ylim=c(0,40))
 hist(irisSet$Petal.Length,breaks=seq(0,8,l=17),xlim=c(0,8),ylim=c(0,40))
 hist(irisVir$Petal.Length,breaks=seq(0,8,l=17),xlim=c(0,8),ylim=c(0,40))
 #  三個品種各自的花瓣長度分布，區間和座標軸都相同，方便比較
-
+#  breaks 提供切割點
+#  xlim ylim 指的是顯示的座標極值
 ##
 if (!require("beanplot")) install.packages("beanplot")
 library(beanplot)
 xiris <- iris
 xiris$Species <- NULL
 #  刪除 Species 欄，只留 4 個數字欄
+par(mfrow=c(1,1))  #改回一列一欄
 beanplot(xiris, main = "Iris flowers",
          col=c('#ff8080','#0000FF','#0000FF','#FF00FF'), border = "#000000")
 #  豆莢圖：豆莢越寬代表那附近的資料越多；Petal.Length 明顯有兩個高峰
